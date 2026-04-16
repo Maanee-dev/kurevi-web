@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --border: #e5e5e5;
+    --muted: #666666;
+    --accent: #000000;
+  }
+
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+    --border: #262626;
+    --muted: #888888;
+    --accent: #ffffff;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] font-sans antialiased transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .cursor-panel {
+    @apply border border-[var(--border)] bg-transparent rounded-2xl overflow-hidden;
+  }
+  
+  .pill-button {
+    @apply px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center space-x-2 border border-[var(--border)];
+  }
+
+  .pill-button-primary {
+    @apply px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center space-x-2 border border-[var(--border)] bg-[var(--foreground)] text-[var(--background)] hover:opacity-90;
+  }
+
+  .pill-button-secondary {
+    @apply px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center space-x-2 border border-[var(--border)] bg-transparent text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)];
+  }
+
+  .section-title {
+    @apply text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-8;
+  }
+
+  .reveal-text {
+    @apply relative overflow-hidden;
+  }
+
+  .reveal-text::after {
+    content: '';
+    @apply absolute inset-0 bg-[var(--foreground)] translate-x-[-101%];
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-effect {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid var(--foreground);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
+}
