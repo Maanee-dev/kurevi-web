@@ -1,23 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 export default function FounderQuote() {
-  const [showDhivehi, setShowDhivehi] = useState(false);
-  const [hasStartedReading, setHasStartedReading] = useState(false);
-
-  useEffect(() => {
-    if (!hasStartedReading) return;
-    
-    // Switch to Dhivehi after 10 seconds of the viewport triggering read start
-    const timer = setTimeout(() => {
-      setShowDhivehi(true);
-    }, 10000);
-    
-    return () => clearTimeout(timer);
-  }, [hasStartedReading]);
-
-  const englishQuote = "Marketing shouldn't be unnecessarily expensive, and businesses should be able to simply work together. We want to help our local community of entrepreneurs grow by providing premium support and seamless workflows at affordable prices. You handle your daily operations, and we handle the marketing. What makes us different from other agencies is our loyalty: we stick with you from day one, providing the professional insights needed to make sure you stand out in the market and get more conversions.";
-  const dhivehiQuote = "މާކެޓިންގ އަކީ އަގުބޮޑު ކަމަކަށް ވެގެން ނުވާނެއެވެ، އަދި ވިޔަފާރިތަކުން އެކުގައި މަސައްކަތް ކުރެވެން ޖެހޭނެއެވެ. އަޅުގަނޑުމެން ބޭނުންވަނީ ހެޔޮ އަގުގައި ފެންވަރު ރަނގަޅު ޕްރޮފެޝަނަލް ޚިދުމަތްތަކެއް ފޯރުކޮށްދީ، އަޅުގަނޑުމެންގެ މުޖުތަމަޢުގެ ވިޔަފާރިވެރިން ކުރިއަރައިދާން އެހީތެރިވުމަށެވެ. ތިޔަބޭފުޅުން ވިޔަފާރީގެ އޮޕަރޭޝަންތައް ބަލަހައްޓަވާށެވެ، މާކެޓިންގގެ ހުރިހާ މަސައްކަތެއް އަޅުގަނޑުމެން ކުރާނަމެވެ. އެހެން އެޖެންސީތަކާ އަޅުގަނޑުމެން ތަފާތުވާ ސަބަބަކީ، ފުރަތަމަ ދުވަހުން ފެށިގެން އަޅުގަނޑުމެން ތިޔަބޭފުޅުންނާއެކު ދެމިތިބެ، މާކެޓުގައި ފާހަގަކޮށްލެވޭނެ ގޮތްތައް ބުނެދީ، ވިޔަފާރިއަށް އިތުރު ކުރިއެރުން (ކޮންވާޝަންސް) ހޯދައިދިނުމެވެ.";
+  const englishQuote = "Marketing shouldn't be expensive. We help our local entrepreneurs grow by providing seamless workflows at affordable prices. You handle your daily operations, and we handle the marketing. We partner with you from day one to ensure you stand out in the market and increase conversions.";
 
   return (
     <section className="py-24 md:py-32 bg-[var(--background)] border-t border-[var(--border)] overflow-hidden relative">
@@ -52,7 +36,6 @@ export default function FounderQuote() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            onViewportEnter={() => setHasStartedReading(true)}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-7 lg:col-span-8"
           >
@@ -60,33 +43,9 @@ export default function FounderQuote() {
               <span className="text-6xl md:text-8xl text-[var(--muted)] opacity-20 font-serif leading-none select-none">"</span>
             </div>
             
-            <div className="relative">
-              <AnimatePresence mode="wait">
-                {!showDhivehi ? (
-                  <motion.h2 
-                    key="en"
-                    initial={{ opacity: 0, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, filter: "blur(4px)", transition: { duration: 0.5 } }}
-                    transition={{ duration: 0.8 }}
-                    className="text-2xl md:text-3xl lg:text-4xl font-serif text-[var(--foreground)] leading-relaxed md:leading-relaxed relative font-normal mb-10 max-w-3xl"
-                  >
-                    {englishQuote}
-                  </motion.h2>
-                ) : (
-                  <motion.h2 
-                    key="dv"
-                    initial={{ opacity: 0, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 0.8 }}
-                    dir="rtl"
-                    className="text-2xl md:text-3xl lg:text-4xl font-serif text-[var(--foreground)] leading-relaxed md:leading-relaxed relative font-normal mb-10 max-w-3xl"
-                  >
-                    {dhivehiQuote}
-                  </motion.h2>
-                )}
-              </AnimatePresence>
-            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-[var(--foreground)] leading-relaxed md:leading-relaxed relative font-normal mb-10 max-w-3xl">
+              {englishQuote}
+            </h2>
             
             <div className="flex flex-col items-start mt-8">
               <div className="w-12 h-px bg-[var(--muted)] mb-6"></div>
