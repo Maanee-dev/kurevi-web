@@ -1,9 +1,15 @@
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import SEO from '@/src/components/SEO';
 
 export default function Work() {
   return (
     <div className="pt-32 pb-24">
+      <SEO 
+        title="Our Work"
+        description="View our selected projects and recent work. See how Kurevi delivers exceptional digital products and marketing campaigns."
+        keywords="Kurevi portfolios, web development portfolio, marketing campaigns Maldives, digital products"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-6xl md:text-8xl font-bold tracking-tighter uppercase mb-16">Selected <br /> Projects.</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Share2, Zap, Palette, PenTool, Layout, Search, ArrowRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
+import SEO from '@/src/components/SEO';
 
 const services = [
   {
@@ -51,6 +52,11 @@ const services = [
 export default function Services() {
   return (
     <div className="pt-32 pb-24 bg-[var(--background)] min-h-screen">
+      <SEO 
+        title="Our Services"
+        description="Comprehensive digital services by Kurevi Maldives: Social Media Marketing, SEO, Paid Ads, Web Development, and Creative Design."
+        keywords="marketing services Maldives, SEO Maldives, web design Maldives, social media marketing Maldives"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
           <motion.h1 

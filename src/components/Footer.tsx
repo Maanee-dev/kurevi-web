@@ -3,8 +3,19 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--background)] border-t border-[var(--border)] pt-32 pb-12 overflow-hidden relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[var(--background)] pt-32 pb-12 overflow-hidden relative z-10">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src="https://i.pinimg.com/736x/8e/2b/de/8e2bde03e3296e23d74e619f12d97af4.jpg" 
+          alt="Background" 
+          className="w-full h-full object-cover opacity-70 mix-blend-overlay"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[var(--background)]/50 to-[var(--background)]"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-32">
           <div className="md:col-span-6">
@@ -30,10 +41,9 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-6">Socials</h4>
             <ul className="space-y-4">
+              <li><a href="https://wa.me/9607222966" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">WhatsApp</a></li>
               <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Instagram</a></li>
-              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Twitter / X</a></li>
               <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Behance</a></li>
             </ul>
           </div>
 

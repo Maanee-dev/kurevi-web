@@ -4,6 +4,7 @@
  */
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
@@ -27,27 +28,29 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="noise-overlay"></div>
-        <div className="relative min-h-screen flex flex-col overflow-hidden">
-          <Starfield />
-          <Navbar />
-          <main className="flex-grow relative z-10">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/:slug" element={<ServiceDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/pricing" element={<Pricing />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="noise-overlay"></div>
+          <div className="relative min-h-screen flex flex-col overflow-hidden">
+            <Starfield />
+            <Navbar />
+            <main className="flex-grow relative z-10">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services/:slug" element={<ServiceDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/pricing" element={<Pricing />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }

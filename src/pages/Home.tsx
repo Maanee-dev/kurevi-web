@@ -1,3 +1,4 @@
+import SEO from '@/src/components/SEO';
 import Hero from '@/src/components/home/Hero';
 import Marquee from '@/src/components/home/Marquee';
 import AboutPreview from '@/src/components/home/AboutPreview';
@@ -9,6 +10,11 @@ import { ArrowRight } from 'lucide-react';
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <SEO 
+        title="Marketing Agency Maldives" 
+        description="Kurevi is the premier digital marketing and production unit in the Maldives. We specialize in bespoke digital architecture, high-end branding, and web development."
+        keywords="marketing agency Maldives, marketing Maldives, best digital marketing in Maldives, Kurevi marketing, web development Maldives, SEO Maldives, branding agency Maldives" 
+      />
       <Hero />
       <Marquee />
       <AboutPreview />

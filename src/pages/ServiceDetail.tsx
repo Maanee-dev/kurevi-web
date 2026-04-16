@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
+import SEO from '@/src/components/SEO';
 
 const serviceDetails = {
   "web-development": {
@@ -73,6 +74,11 @@ export default function ServiceDetail() {
 
   return (
     <div className="pt-32 pb-24 min-h-screen bg-[var(--background)]">
+      <SEO 
+        title={`${service.title} Services`}
+        description={service.description}
+        keywords={`${service.title.toLowerCase()} service Maldives, Kurevi ${service.title.toLowerCase()}, digital marketing Maldives, bespoke tech architecture`}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <Link to="/services" className="inline-flex items-center text-xs font-mono uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-20 group">

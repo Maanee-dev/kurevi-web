@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Check, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
+import SEO from '@/src/components/SEO';
 
 const plans = [
   {
@@ -66,6 +67,11 @@ const plans = [
 export default function Pricing() {
   return (
     <div className="pt-32 pb-32 bg-[var(--background)] min-h-screen">
+      <SEO 
+        title="Pricing"
+        description="Transparent and straightforward pricing models for web development, design, and enterprise solutions by Kurevi Maldives."
+        keywords="web design price Maldives, marketing agency pricing Maldives, setup web development Maldives cost"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20 text-center">
           <motion.h1 
@@ -106,7 +112,7 @@ export default function Pricing() {
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-xl font-bold uppercase tracking-tight">{plan.name}</h3>
                   <div className={cn(
-                    "text-[10px] font-mono tracking-widest uppercase px-3 py-1 border",
+                    "text-[10px] font-bold tracking-widest uppercase px-3 py-1 border",
                     plan.highlight ? "border-[var(--background)] text-[var(--background)]" : "border-[var(--border)] text-[var(--muted)]"
                   )}>
                     {plan.duration}

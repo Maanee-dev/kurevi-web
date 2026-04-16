@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Send } from 'lucide-react';
+import { Send, Phone } from 'lucide-react';
+import SEO from '@/src/components/SEO';
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -19,6 +20,11 @@ export default function Contact() {
 
   return (
     <div className="pt-32 pb-24">
+      <SEO 
+        title="Contact Us"
+        description="Get in touch with Kurevi. We are ready to initiate your next big project. Reach out via email, or WhatsApp us."
+        keywords="contact marketing agency Maldives, hire web developer Maldives, Kurevi contact number"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
@@ -30,11 +36,17 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--muted)] mb-2">Email Us</h4>
-                <p className="text-lg font-medium">hello@kurevi.digital</p>
+                <p className="text-lg font-medium">hello@kurevi.com</p>
               </div>
               <div>
-                <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--muted)] mb-2">Visit Us</h4>
-                <p className="text-lg font-medium">123 Future Lane, Tech City, SF 94103</p>
+                <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--muted)] mb-2">WhatsApp / Call</h4>
+                <a href="https://wa.me/9607222966" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg font-medium hover:text-[var(--muted)] transition-colors">
+                  <Phone size={18} /> +960 7222966
+                </a>
+              </div>
+              <div>
+                <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--muted)] mb-2">Based In</h4>
+                <p className="text-lg font-medium">Maldives</p>
               </div>
             </div>
           </div>

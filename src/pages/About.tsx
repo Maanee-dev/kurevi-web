@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Linkedin, Mail, Phone } from 'lucide-react';
+import SEO from '@/src/components/SEO';
 
 const team = [
   {
@@ -43,6 +44,10 @@ const team = [
 export default function About() {
   return (
     <div className="pt-32 pb-24 min-h-screen">
+      <SEO 
+        title="About Us"
+        description="Learn about Kurevi, the top digital production unit in the Maldives. Meet our team of experts in web development, design, and digital marketing."
+      />
       {/* Header & Goals Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">

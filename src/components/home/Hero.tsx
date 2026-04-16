@@ -34,7 +34,7 @@ export default function Hero() {
         >
           For <span className="relative inline-block">
             <span className="relative z-10">Brands</span>
-            <svg className="absolute -inset-2 md:-inset-4 w-[calc(100%+16px)] md:w-[calc(100%+32px)] h-[calc(100%+16px)] md:h-[calc(100%+32px)] z-0 text-[var(--foreground)] opacity-20" viewBox="0 0 200 100" preserveAspectRatio="none">
+            <svg className="absolute -inset-2 md:-inset-4 w-[calc(100%+16px)] md:w-[calc(100%+32px)] h-[calc(100%+16px)] md:h-[calc(100%+32px)] z-0 text-white opacity-80" viewBox="0 0 200 100" preserveAspectRatio="none">
               <path d="M100,5 C150,5 195,25 195,50 C195,75 150,95 100,95 C50,95 5,75 5,50 C5,25 50,5 100,5 Z" fill="none" stroke="currentColor" strokeWidth="3" vectorEffect="non-scaling-stroke" />
             </svg>
           </span> <br /> 
