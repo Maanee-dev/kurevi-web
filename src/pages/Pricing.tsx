@@ -6,51 +6,58 @@ import { cn } from '../lib/utils';
 const plans = [
   {
     name: "SPRINT",
-    price: "3,500",
-    prefix: "$",
+    price: "3,999",
+    prefix: "MVR",
     suffix: "flat",
     duration: "1-2 Weeks",
     description: "Perfect for fast validation. We design and build a high-converting landing page or simple MVP to get your startup off the ground.",
     features: [
-      "Landing Page Design",
-      "Responsive Web Development",
-      "Basic SEO Setup",
-      "Contact Forms & Integrations",
-      "1 Revision Round"
+      "Custom Landing Page Design",
+      "Responsive Web & Mobile Dev",
+      "Basic On-Page SEO Setup",
+      "Contact Forms & Lead Capture",
+      "Google Analytics Integration",
+      "Social Media Pixel Setup",
+      "1 Dedicated Revision Round",
+      "SSL & Basic Security Architecture"
     ],
     highlight: false,
   },
   {
     name: "FULL BUILD",
-    price: "8,500",
-    prefix: "from $",
-    suffix: "per project",
+    price: "15,000",
+    prefix: "MVR",
+    suffix: "minimum",
     duration: "4-8 Weeks",
-    description: "End-to-end digital product design. Full scale websites, applications, and e-commerce platforms tailored to your exact needs.",
+    description: "End-to-end digital product design. Full scale websites, applications, and e-commerce platforms tailored exactly to your business logic.",
     features: [
       "Complete UI/UX Design System",
-      "Full Stack Development",
-      "Headless CMS Integration",
-      "Advanced Web Animations",
-      "3 Revision Rounds",
-      "Priority Launch Support"
+      "Full Stack Application Development",
+      "Headless CMS (Sanity/Strapi)",
+      "E-Commerce & Payment Gateway",
+      "Advanced Web Animations (Framer)",
+      "Technical SEO & Speed Optimization",
+      "3 Dedicated Revision Rounds",
+      "1 Month Priority Launch Support"
     ],
     highlight: true,
   },
   {
-    name: "RETAINER",
-    price: "4,000",
-    prefix: "$",
-    suffix: "per month",
-    duration: "Ongoing",
-    description: "Continuous design and development support. Think of us as your own dedicated internal product team on standby.",
+    name: "ENTERPRISE",
+    price: "25k+",
+    prefix: "MVR",
+    suffix: "per project",
+    duration: "Custom Timeline",
+    description: "For high-complexity digital architectures and aggressive scaling. Dedicated resources mapped precisely to your extreme requirements.",
     features: [
-      "Unlimited Design Requests",
-      "Continuous Dev Implementations",
-      "Weekly Strategy Calls",
-      "Priority Turnaround Times",
-      "Pause or Cancel Anytime",
-      "Dedicated Project Manager"
+      "Scalable Custom Cloud Architecture",
+      "Bespoke Backend Solutions (Node/Python)",
+      "Complex API & 3rd-Party Integrations",
+      "Mobile App Deployment (iOS/Android)",
+      "Unlimited Design & Dev Support Requests",
+      "Dedicated Project Manager & Channel",
+      "Weekly Strategy & KPI Review Calls",
+      "24/7 Priority Issue Resolution"
     ],
     highlight: false,
   }
@@ -106,13 +113,13 @@ export default function Pricing() {
                   </div>
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-6 flex flex-wrap items-baseline gap-1">
                   <span className={cn("text-sm font-mono tracking-widest", plan.highlight ? "text-[var(--background)]/70" : "text-[var(--muted)]")}>{plan.prefix}</span>
-                  <span className="text-5xl md:text-6xl font-black tracking-tighter mx-1">{plan.price}</span>
-                  <span className={cn("text-xs font-mono uppercase tracking-widest", plan.highlight ? "text-[var(--background)]/70" : "text-[var(--muted)]")}>{plan.suffix}</span>
+                  <span className="text-4xl lg:text-5xl font-black tracking-tighter">{plan.price}</span>
+                  <span className={cn("text-[10px] font-mono uppercase tracking-widest ml-1", plan.highlight ? "text-[var(--background)]/70" : "text-[var(--muted)]")}>{plan.suffix}</span>
                 </div>
 
-                <p className={cn("text-sm leading-relaxed min-h-[4rem]", plan.highlight ? "text-[var(--background)]/80" : "text-[var(--muted)]")}>
+                <p className={cn("text-sm leading-relaxed min-h-[5rem]", plan.highlight ? "text-[var(--background)]/80" : "text-[var(--muted)]")}>
                   {plan.description}
                 </p>
               </div>
