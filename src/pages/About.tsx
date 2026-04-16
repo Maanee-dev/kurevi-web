@@ -99,47 +99,84 @@ export default function About() {
           </motion.h2>
         </div>
 
-        {/* Mobile Horizontal Scroll / Desktop Grid */}
-        <div className="flex overflow-x-auto md:grid md:grid-cols-2 gap-6 md:gap-x-12 md:gap-y-24 pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        {/* Editorial Brutalism Team Layout */}
+        <div className="flex flex-col gap-32 md:gap-40 pt-10">
           {team.map((member, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group min-w-[85vw] sm:min-w-[60vw] md:min-w-0 snap-center flex-shrink-0"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''} group`}
             >
-              <div className="aspect-[4/5] w-full overflow-hidden border border-[var(--border)] mb-8 relative bg-[#111]">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Image Side */}
+              <div className="w-full lg:w-1/2 relative">
+                {/* Decorative Offset Box */}
+                <div className={`absolute top-4 sm:top-6 lg:top-12 ${i % 2 === 0 ? '-left-4 sm:-left-6 lg:-left-12' : '-right-4 sm:-right-6 lg:-right-12'} w-full h-full border border-[var(--border)] z-0 bg-[var(--background)] group-hover:translate-x-4 group-hover:translate-y-4 transition-transform duration-700 ease-out`}>
+                  <div className="w-full h-full opacity-[0.03] noise-bg"></div>
+                </div>
+                
+                {/* Main Image */}
+                <div className="aspect-[4/5] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 relative z-10 border border-[var(--border)] bg-[#111]">
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-700"></div>
+                </div>
               </div>
-              
-              <div className="flex flex-col">
-                <h3 className="text-3xl font-bold uppercase tracking-tight mb-2">{member.name}</h3>
-                <span className="text-sm font-mono text-[var(--muted)] uppercase tracking-widest mb-6 block pb-6 border-b border-[var(--border)]">
-                  {member.role}
-                </span>
-                <p className="text-[var(--foreground)]/70 leading-relaxed">
+
+              {/* Text Side */}
+              <div className="w-full lg:w-1/2 flex flex-col justify-center relative z-20 mt-8 lg:mt-0">
+                <div className="mb-6 lg:mb-8 flex items-center gap-4">
+                  <span className="w-12 lg:w-16 h-px bg-[var(--foreground)]"></span>
+                  <span className="text-xs font-mono uppercase tracking-widest text-[var(--muted)]">{member.role}</span>
+                </div>
+                
+                <h3 className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-black uppercase tracking-tighter leading-[0.85] mb-8 lg:mb-12">
+                  {member.name.trim().split(' ').map((n, idx) => (
+                    <span 
+                      key={idx} 
+                      className="block group-hover:translate-x-4 transition-transform duration-500 ease-out" 
+                      style={{ transitionDelay: `${idx * 100}ms` }}
+                    >
+                      {n}
+                    </span>
+                  ))}
+                </h3>
+                
+                <p className="text-[var(--foreground)]/70 text-base sm:text-lg lg:text-xl leading-relaxed font-medium max-w-xl mb-12 lg:mb-16">
                   {member.description}
                 </p>
-                
-                {/* Contact Links */}
-                <div className="flex items-center gap-6 mt-6 pt-6 border-t border-[var(--border)]">
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors" aria-label={`${member.name} LinkedIn`}>
-                    <Linkedin size={20} />
-                  </a>
-                  <a href={`mailto:${member.email}`} className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors" aria-label={`Email ${member.name}`}>
-                    <Mail size={20} />
-                  </a>
-                  <a href={`tel:${member.phone}`} className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors" aria-label={`Call ${member.name}`}>
-                    <Phone size={20} />
-                  </a>
+
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6 border-t border-[var(--border)] pt-8">
+                  {member.linkedin && (
+                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors group/link uppercase text-[10px] sm:text-xs font-mono tracking-widest">
+                      <span className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center group-hover/link:bg-[var(--foreground)] group-hover/link:text-[var(--background)] transition-colors">
+                        <Linkedin size={16} />
+                      </span>
+                      <span className="hidden sm:inline">LinkedIn</span>
+                    </a>
+                  )}
+                  {member.email && (
+                    <a href={`mailto:${member.email}`} className="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors group/link uppercase text-[10px] sm:text-xs font-mono tracking-widest">
+                      <span className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center group-hover/link:bg-[var(--foreground)] group-hover/link:text-[var(--background)] transition-colors">
+                        <Mail size={16} />
+                      </span>
+                      <span className="hidden sm:inline">Email</span>
+                    </a>
+                  )}
+                  {member.phone && (
+                    <a href={`tel:${member.phone}`} className="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--foreground)] transition-colors group/link uppercase text-[10px] sm:text-xs font-mono tracking-widest">
+                      <span className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center group-hover/link:bg-[var(--foreground)] group-hover/link:text-[var(--background)] transition-colors">
+                        <Phone size={16} />
+                      </span>
+                      <span className="hidden sm:inline">Call</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
