@@ -16,8 +16,8 @@ export default function FounderQuote() {
     return () => clearTimeout(timer);
   }, [hasStartedReading]);
 
-  const englishQuote = "We keep things simple. We don't use confusing jargon or build things you don't need. A great digital product should look amazing, be incredibly easy to use, and actually help your business grow. That's exactly what we focus on here.";
-  const dhivehiQuote = "އަހަރެމެން ކަންތައްތައް ބަހައްޓަނީ ވަރަށް ސާދާކޮށެވެ. އޮޅޭފަދަ ބަސްތައް ބޭނުންކޮށް، ބޭނުންނުވާ އެއްޗެހި އަހަރެމެން ނުހަދަމެވެ. ރަނގަޅު ޑިޖިޓަލް އުފެއްދުމެއް ވާންވާނީ ބަލާލަން ރީތި، ބޭނުންކުރަން ފަސޭހަ އަދި ވިޔަފާރި ކުރިއަރުވަން އެހީވެދޭ އެއްޗަކަށެވެ. އަހަރެމެންގެ މައިގަނޑު އަމާޒަކީ ހަމަ މިއީއެވެ.";
+  const englishQuote = "Marketing shouldn't be unnecessarily expensive, and businesses should be able to simply work together. We want to help our local community of entrepreneurs grow by providing premium support and seamless workflows at affordable prices. You handle your daily operations, and we handle the marketing. What makes us different from other agencies is our loyalty: we stick with you from day one, providing the professional insights needed to make sure you stand out in the market and get more conversions.";
+  const dhivehiQuote = "މާކެޓިންގ އަކީ އަގުބޮޑު ކަމަކަށް ވެގެން ނުވާނެއެވެ، އަދި ވިޔަފާރިތަކުން އެކުގައި މަސައްކަތް ކުރެވެން ޖެހޭނެއެވެ. އަޅުގަނޑުމެން ބޭނުންވަނީ ހެޔޮ އަގުގައި ފެންވަރު ރަނގަޅު ޕްރޮފެޝަނަލް ޚިދުމަތްތަކެއް ފޯރުކޮށްދީ، އަޅުގަނޑުމެންގެ މުޖުތަމަޢުގެ ވިޔަފާރިވެރިން ކުރިއަރައިދާން އެހީތެރިވުމަށެވެ. ތިޔަބޭފުޅުން ވިޔަފާރީގެ އޮޕަރޭޝަންތައް ބަލަހައްޓަވާށެވެ، މާކެޓިންގގެ ހުރިހާ މަސައްކަތެއް އަޅުގަނޑުމެން ކުރާނަމެވެ. އެހެން އެޖެންސީތަކާ އަޅުގަނޑުމެން ތަފާތުވާ ސަބަބަކީ، ފުރަތަމަ ދުވަހުން ފެށިގެން އަޅުގަނޑުމެން ތިޔަބޭފުޅުންނާއެކު ދެމިތިބެ، މާކެޓުގައި ފާހަގަކޮށްލެވޭނެ ގޮތްތައް ބުނެދީ، ވިޔަފާރިއަށް އިތުރު ކުރިއެރުން (ކޮންވާޝަންސް) ހޯދައިދިނުމެވެ.";
 
   return (
     <section className="py-24 md:py-32 bg-[var(--background)] border-t border-[var(--border)] overflow-hidden relative">
