@@ -1,43 +1,61 @@
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--background)] py-12 border-t border-[var(--border)]">
+    <footer className="bg-[var(--background)] border-t border-[var(--border)] pt-32 pb-12 overflow-hidden relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <Link to="/" className="text-xl font-bold tracking-tighter">kurevi.</Link>
-            <p className="mt-4 text-[var(--muted)] max-w-xs text-sm">
-              The Social Web Production Agency. Elevating your online presence with bespoke digital solutions.
-            </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-32">
+          <div className="md:col-span-6">
+            <h3 className="text-3xl font-bold uppercase tracking-tight mb-8">Ready to initiate <br/> your next project?</h3>
+            <Link to="/contact" className="pill-button-primary inline-flex group">
+              <span>Start the dialogue</span>
+              <div className="w-6 h-6 rounded-full bg-[var(--background)] text-[var(--foreground)] flex items-center justify-center group-hover:translate-x-1 transition-transform ml-2">
+                <ArrowRight size={14} />
+              </div>
+            </Link>
           </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Agency</h4>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About</Link></li>
-              <li><Link to="/work" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Work</Link></li>
-              <li><Link to="/services" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Services</Link></li>
-              <li><Link to="/contact" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Contact</Link></li>
+          
+          <div className="md:col-span-2">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-6">Navigation</h4>
+            <ul className="space-y-4">
+              <li><Link to="/" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Home</Link></li>
+              <li><Link to="/work" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Work</Link></li>
+              <li><Link to="/services" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Services</Link></li>
+              <li><Link to="/about" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">About</Link></li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Connect</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Twitter</a></li>
-              <li><a href="#" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Instagram</a></li>
-              <li><a href="#" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Dribbble</a></li>
+          
+          <div className="md:col-span-2">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-6">Socials</h4>
+            <ul className="space-y-4">
+              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Instagram</a></li>
+              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Twitter / X</a></li>
+              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">LinkedIn</a></li>
+              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Behance</a></li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-2">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-6">Legal</h4>
+            <ul className="space-y-4">
+              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-[var(--muted)]">
-            © {new Date().getFullYear()} Nexus Digital Agency. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-xs text-[var(--muted)] hover:text-[var(--foreground)]">Privacy Policy</a>
-            <a href="#" className="text-xs text-[var(--muted)] hover:text-[var(--foreground)]">Terms of Service</a>
-          </div>
+
+        {/* Massive Footer Logo */}
+        <div className="w-full flex justify-center items-center border-b border-[var(--border)] pb-12 mb-12">
+          <span className="text-[18vw] font-black tracking-tighter leading-none uppercase text-[var(--foreground)] w-full text-center">
+            KUREVI<span className="text-[4vw] align-top">®</span>
+          </span>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center text-xs font-mono text-[var(--muted)] uppercase tracking-widest">
+          <p>© {new Date().getFullYear()} Kurevi Digital Production Unit.</p>
+          <p className="mt-4 md:mt-0">All systems operational.</p>
         </div>
       </div>
     </footer>

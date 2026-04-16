@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export default function Work() {
   return (
@@ -12,20 +13,33 @@ export default function Work() {
             { title: "Aether Labs", category: "Creative Design" },
             { title: "Zenith Store", category: "E-commerce" },
           ].map((project, i) => (
-            <div key={i} className="group cursor-pointer">
-              <div className="cursor-panel aspect-[16/10] bg-[var(--border)]/10 mb-6 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-white/5 to-transparent group-hover:scale-105 transition-transform duration-500"></div>
+            <motion.div 
+              key={i} 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.8 }}
+              className="group cursor-pointer"
+            >
+              <div className="cosmic-card aspect-[16/10] mb-6 overflow-hidden p-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+                <img 
+                  src={`https://picsum.photos/seed/${project.title}/1200/800`} 
+                  alt={project.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                  referrerPolicy="no-referrer"
+                />
               </div>
               <div className="flex justify-between items-end">
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)] mb-2">{project.category}</div>
-                  <h3 className="text-2xl font-bold uppercase tracking-tight">{project.title}</h3>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)] mb-2 group-hover:text-white/60 transition-colors">{project.category}</div>
+                  <h3 className="text-2xl font-bold uppercase tracking-tight gradient-text group-hover:tracking-widest transition-all duration-500">{project.title}</h3>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--foreground)] group-hover:text-[var(--background)] transition-colors">
-                  <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform" />
+                <div className="w-12 h-12 rounded-2xl border border-[var(--border)] flex items-center justify-center group-hover:border-white/40 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-500">
+                  <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

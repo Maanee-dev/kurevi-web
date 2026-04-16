@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @layer base {
@@ -16,10 +17,10 @@
   }
 
   .dark {
-    --background: #0a0a0a;
+    --background: #050505;
     --foreground: #ffffff;
-    --border: #262626;
-    --muted: #888888;
+    --border: rgba(255, 255, 255, 0.15);
+    --muted: rgba(255, 255, 255, 0.5);
     --accent: #ffffff;
   }
 
@@ -29,16 +30,28 @@
 }
 
 @layer components {
-  .cursor-panel {
-    @apply border border-[var(--border)] bg-transparent rounded-2xl overflow-hidden;
+  .brutalist-grid {
+    @apply border-t border-l border-[var(--border)];
   }
-  
+
+  .brutalist-cell {
+    @apply border-r border-b border-[var(--border)] relative transition-colors duration-300;
+  }
+
+  .brutalist-cell:hover {
+    @apply bg-white/5;
+  }
+
+  .number-box {
+    @apply w-8 h-8 bg-[var(--foreground)] text-[var(--background)] flex items-center justify-center font-bold text-sm;
+  }
+
   .pill-button {
     @apply px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center space-x-2 border border-[var(--border)];
   }
 
   .pill-button-primary {
-    @apply px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center space-x-2 border border-[var(--border)] bg-[var(--foreground)] text-[var(--background)] hover:opacity-90;
+    @apply px-8 py-3 rounded-full font-bold transition-all duration-200 flex items-center justify-center space-x-2 bg-[var(--foreground)] text-[var(--background)] hover:opacity-90 uppercase tracking-widest text-xs;
   }
 
   .pill-button-secondary {
@@ -46,32 +59,28 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-8;
-  }
-
-  .reveal-text {
-    @apply relative overflow-hidden;
-  }
-
-  .reveal-text::after {
-    content: '';
-    @apply absolute inset-0 bg-[var(--foreground)] translate-x-[-101%];
+    @apply text-4xl md:text-6xl font-black tracking-tighter uppercase mb-8;
   }
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
-@keyframes blink {
-  50% { border-color: transparent }
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }
 
-.typing-effect {
-  display: inline-block;
-  overflow: hidden;
-  border-right: 2px solid var(--foreground);
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
+

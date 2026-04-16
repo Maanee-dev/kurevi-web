@@ -7,10 +7,9 @@ import { cn } from '@/src/lib/utils';
 
 const navLinks = [
   { name: 'Home', path: '/' },
-  { name: 'Projects', path: '/work' },
-  { name: 'Team', path: '/about' },
-  { name: 'Clients', path: '/clients' },
   { name: 'About', path: '/about' },
+  { name: 'Service', path: '/services' },
+  { name: 'Project', path: '/work' },
 ];
 
 export default function Navbar() {
@@ -19,39 +18,40 @@ export default function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/80 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[var(--background)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-xl font-bold tracking-tighter">kurevi.</span>
+          <Link to="/" className="flex items-center group">
+            <span className="text-xl font-black tracking-tighter uppercase transition-all duration-500">KUREVI®</span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden md:flex items-center space-x-12">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  "text-[13px] font-medium transition-colors hover:text-[var(--foreground)]",
-                  location.pathname === link.path ? "text-[var(--foreground)]" : "text-[var(--muted)]"
+                  "text-xs font-medium transition-all duration-300 flex items-center",
+                  location.pathname === link.path ? "text-[var(--foreground)]" : "text-[var(--muted)] hover:text-[var(--foreground)]"
                 )}
               >
+                {location.pathname === link.path && <span className="mr-2 text-[10px]">●</span>}
                 {link.name}
               </Link>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-6">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-[var(--border)]/10 transition-colors"
+              className="p-2 rounded-full hover:bg-[var(--border)]/20 transition-colors text-[var(--muted)] hover:text-[var(--foreground)]"
             >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
             </button>
-            <Link to="/contact" className="pill-button-primary text-xs px-6 py-2">
-              Contact us
+            <Link to="/contact" className="text-xs font-bold bg-[var(--foreground)] text-[var(--background)] px-6 py-2 rounded-full hover:opacity-90 transition-all duration-300 flex items-center">
+              <span className="mr-2 text-[10px]">●</span> Contact
             </Link>
           </div>
 

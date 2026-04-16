@@ -1,5 +1,7 @@
 import Hero from '@/src/components/home/Hero';
+import Marquee from '@/src/components/home/Marquee';
 import ServicesGrid from '@/src/components/home/ServicesGrid';
+import FeaturedWork from '@/src/components/home/FeaturedWork';
 import SpecialOffer from '@/src/components/home/SpecialOffer';
 import About from '@/src/pages/About';
 import Booking from '@/src/components/Booking';
@@ -10,8 +12,10 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <Hero />
+      <Marquee />
       <About />
       <ServicesGrid />
+      <FeaturedWork />
       <SpecialOffer />
       <Booking />
       

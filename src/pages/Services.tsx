@@ -45,32 +45,55 @@ export default function Services() {
     <div className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-6xl md:text-8xl font-bold tracking-tighter uppercase mb-16">Our <br /> Services.</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="cursor-panel p-10 flex flex-col justify-between aspect-square md:aspect-auto md:h-[450px]"
+              transition={{ delay: i * 0.1, duration: 0.8 }}
+              className="cosmic-card p-12 flex flex-col justify-between aspect-square md:aspect-auto md:h-[500px] group"
             >
-              <div>
-                <div className="w-12 h-12 rounded-full border border-[var(--border)] flex items-center justify-center mb-8">
-                  <service.icon size={24} />
-                </div>
-                <h2 className="text-3xl font-bold uppercase tracking-tight mb-6">{service.title}</h2>
-                <p className="text-sm text-[var(--muted)] leading-relaxed max-w-sm">
+              <div className="relative z-10">
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
+                  className="w-16 h-16 rounded-2xl border border-[var(--border)] flex items-center justify-center mb-10 group-hover:border-white/40 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-500"
+                >
+                  <service.icon size={28} />
+                </motion.div>
+                <motion.h2 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 + 0.4, duration: 0.5 }}
+                  className="text-4xl font-bold uppercase tracking-tighter mb-6 gradient-text group-hover:tracking-widest transition-all duration-500"
+                >
+                  {service.title}
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: i * 0.1 + 0.6, duration: 0.5 }}
+                  className="text-sm text-[var(--muted)] leading-relaxed max-w-sm font-mono tracking-tight"
+                >
                   {service.description}
-                </p>
+                </motion.p>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 mt-8">
+              <div className="grid grid-cols-2 gap-6 mt-12 relative z-10">
                 {service.features.map((feature, j) => (
-                  <div key={j} className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)] flex items-center">
-                    <div className="w-1 h-1 rounded-full bg-[var(--foreground)] mr-2"></div>
+                  <motion.div 
+                    key={j} 
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 + 0.6 + (j * 0.1), duration: 0.5 }}
+                    className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)] flex items-center group-hover:text-white/80 transition-colors"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-[var(--border)] mr-3 group-hover:bg-white transition-colors"></div>
                     {feature}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

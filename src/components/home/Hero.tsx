@@ -4,119 +4,57 @@ import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[var(--background)]">
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://i.pinimg.com/736x/16/59/1a/16591aeeb653e6eacdeb74e29d625160.jpg" 
+          src="https://i.pinimg.com/736x/8e/2b/de/8e2bde03e3296e23d74e619f12d97af4.jpg" 
           alt="Background" 
-          className="w-full h-full object-cover opacity-20 dark:opacity-7"
+          className="w-full h-full object-cover  opacity-70 mix-blend-overlay"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-transparent to-[var(--background)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--background)]/20 to-[var(--background)]"></div>
       </div>
 
-      {/* Abstract Background Shapes */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-1">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 text-center mt-20">
         <motion.div
-          animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 5, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 right-[10%] w-64 h-96 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-3xl opacity-30"
-        />
-        <motion.div
-          animate={{ 
-            y: [0, 30, 0],
-            rotate: [0, -10, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 left-[15%] w-80 h-80 bg-gradient-to-tr from-white/5 to-transparent rounded-full blur-2xl opacity-20"
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="mb-6"
         >
-          <div className="mb-6 inline-block">
-            <span className="typing-effect text-xs font-mono uppercase tracking-[0.4em] text-[var(--muted)]">
-              Est. 2024 / Digital Excellence
-            </span>
-          </div>
-          
-          <h1 className="text-6xl md:text-[120px] font-bold tracking-tighter leading-[0.9] uppercase mb-12 max-w-5xl mx-auto">
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="block"
-            >
-              The Social
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="block"
-            >
-              Web
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="block"
-            >
-              Production
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="block"
-            >
-              Agency
-            </motion.span>
-          </h1>
-          
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
-            className="max-w-lg mx-auto mb-12"
-          >
-            <p className="text-sm text-[var(--muted)] leading-relaxed mb-8">
-              Unlock your digital potential with The Social web production agency. We offer 
-              bespoke solutions in web development, digital marketing, and creative design 
-              to elevate your online presence and drive measurable results.
-            </p>
-            
-            <div className="flex justify-center">
-              <Link to="/services" className="pill-button-primary group">
-                <span>Choose services</span>
-                <div className="w-6 h-6 rounded-full bg-[var(--background)] text-[var(--foreground)] flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                  <ArrowRight size={14} />
-                </div>
-              </Link>
-            </div>
-          </motion.div>
+       
+        </motion.div>
+
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[12vw] md:text-[8.5vw] font-black tracking-tighter leading-none uppercase text-[var(--foreground)] relative"
+        >
+          For <span className="relative inline-block">
+            <span className="relative z-10">Brands</span>
+            <svg className="absolute -inset-2 md:-inset-4 w-[calc(100%+16px)] md:w-[calc(100%+32px)] h-[calc(100%+16px)] md:h-[calc(100%+32px)] z-0 text-[var(--foreground)] opacity-20" viewBox="0 0 200 100" preserveAspectRatio="none">
+              <path d="M100,5 C150,5 195,25 195,50 C195,75 150,95 100,95 C50,95 5,75 5,50 C5,25 50,5 100,5 Z" fill="none" stroke="currentColor" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            </svg>
+          </span> <br /> 
+          That Want <span className="font-serif italic normal-case font-normal tracking-normal">More</span>
+        </motion.h1>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 flex flex-col sm:flex-row items-center gap-6"
+        >
+          <Link to="/services" className="pill-button-primary group">
+            <span className="relative z-10">Initialize Project</span>
+          </Link>
+          <Link to="/work" className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-all group flex items-center gap-2">
+            View Archives <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
       </div>
-      
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
-      >
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)] mb-2">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-[var(--foreground)] to-transparent"></div>
-      </motion.div>
     </section>
   );
 }

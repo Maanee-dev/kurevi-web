@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Starfield from './components/Starfield';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
@@ -28,9 +29,11 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col">
+        <div className="noise-overlay"></div>
+        <div className="relative min-h-screen flex flex-col overflow-hidden">
+          <Starfield />
           <Navbar />
-          <main className="flex-grow">
+          <main className="flex-grow relative z-10">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
