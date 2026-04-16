@@ -49,13 +49,12 @@ export default function Footer() {
         {/* Massive Footer Logo */}
         <div className="w-full flex justify-center items-center border-b border-[var(--border)] pb-12 mb-12">
           <span className="text-[18vw] font-black tracking-tighter leading-none uppercase text-[var(--foreground)] w-full text-center">
-            KUREVI<span className="text-[4vw] align-top">®</span>
+            KUREVI<span className="text-[4vw] align-top"></span>
           </span>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-xs font-mono text-[var(--muted)] uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} Kurevi Digital Production Unit.</p>
-          <p className="mt-4 md:mt-0">All systems operational.</p>
+          <p>© {new Date().getFullYear()} Kurevi</p>
         </div>
       </div>
     </footer>

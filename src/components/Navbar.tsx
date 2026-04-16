@@ -1,19 +1,17 @@
 import { motion } from 'motion/react';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme } from '@/src/contexts/ThemeContext';
 import { cn } from '@/src/lib/utils';
 
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
-  { name: 'Service', path: '/services' },
-  { name: 'Project', path: '/work' },
+  { name: 'Services', path: '/services' },
+  { name: 'Pricing', path: '/pricing' },
 ];
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -23,7 +21,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <span className="text-xl font-black tracking-tighter uppercase transition-all duration-500">KUREVI®</span>
+            <span className="text-xl font-black tracking-tighter uppercase transition-all duration-500">KUREVI.</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -44,12 +42,6 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-[var(--border)]/20 transition-colors text-[var(--muted)] hover:text-[var(--foreground)]"
-            >
-              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-            </button>
             <Link to="/contact" className="text-xs font-bold bg-[var(--foreground)] text-[var(--background)] px-6 py-2 rounded-full hover:opacity-90 transition-all duration-300 flex items-center">
               <span className="mr-2 text-[10px]">●</span> Contact
             </Link>
@@ -57,12 +49,6 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-[var(--border)]/10 transition-colors"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg hover:bg-[var(--border)]/10 transition-colors"

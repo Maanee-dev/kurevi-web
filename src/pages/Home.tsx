@@ -2,7 +2,6 @@ import Hero from '@/src/components/home/Hero';
 import Marquee from '@/src/components/home/Marquee';
 import AboutPreview from '@/src/components/home/AboutPreview';
 import ServicesGrid from '@/src/components/home/ServicesGrid';
-import FeaturedWork from '@/src/components/home/FeaturedWork';
 import Booking from '@/src/components/Booking';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
@@ -14,7 +13,6 @@ export default function Home() {
       <Marquee />
       <AboutPreview />
       <ServicesGrid />
-      <FeaturedWork />
       <Booking />
       
       {/* Final CTA / Contact Link */}

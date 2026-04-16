@@ -6,22 +6,22 @@ const projects = [
   {
     id: "01",
     title: "E-COMMERCE",
-    headline: "Build your online store, make selling easy.",
-    description: "What if we told you that we could have a digital store up and running for you in just 2 weeks? All we need to do is blend your brand's look with our existing eCommerce solution, and voila! You're ready to sell online. While we cover all the major eCommerce features, we also offer some great payment plans, and you'll get to work with a fun team. So this one's definitely a win-win for you.",
+    headline: "Build your online store securely.",
+    description: "We can have your very own digital store up and running quickly. We blend your brand's unique look with a powerful online shopping system. You get all the features you need to sell online safely, along with payment plans that make sense for your business.",
     image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2000&auto=format&fit=crop"
   },
   {
     id: "02",
     title: "HUMANLOT",
-    headline: "For productive teams & happier employees",
-    description: "We believe that teams are only as strong as their people. And having a well built HR software in place can facilitate growth, it can turn out to be a game-changer. These HR tools have been put together to fix our team's personal problems & we hope it's of great use for yours.",
+    headline: "Better tools for happier teams.",
+    description: "A business is only as strong as its people. We built HR software that actually makes managing a team easier. These tools clear up confusion, save time, and help your employees do their best work without the usual stress.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
   },
   {
     id: "03",
     title: "NEXUS",
-    headline: "Next-generation web platforms.",
-    description: "A complete overhaul of the digital experience. We focused on creating a seamless, intuitive interface that guides users through complex data with ease. The result is a platform that not only looks stunning but performs flawlessly under heavy load.",
+    headline: "A faster, cleaner web platform.",
+    description: "We completely rebuilt their digital platform from the ground up. The focus was on making a simple, easy-to-use website that handles big amounts of data without slowing down. The final product looks great and runs perfectly even on heavy traffic days.",
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop"
   }
 ];
@@ -37,7 +37,7 @@ export default function FeaturedWork() {
             viewport={{ once: true }}
             className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none"
           >
-            SELECTED <br /> ARCHIVES
+            OUR RECENT <br /> WORK
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, x: 20 }}

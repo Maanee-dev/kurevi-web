@@ -29,15 +29,15 @@ const team = [
   "email": "adham@kurevi.com",
   "phone": ""
 },
-  {
-    name: "Sarah Chen",
-    role: "Executive Director Finance",
-    description: "The analytical backbone of Kurevi. Sarah manages our global operations, ensuring sustainable growth and operational excellence across all our hubs.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
-    linkedin: "https://linkedin.com",
-    email: "sarah@kurevi.com",
-    phone: "+1234567893"
-  }
+{
+  "name": "Farih Faiz",
+  "role": "Head of Marketing",
+  "description": "Focused on building brand presence and driving growth through clear strategy and execution. Farih works on turning ideas into campaigns that connect, convert, and scale across digital platforms.",
+  "image": "https://media.licdn.com/dms/image/v2/C5603AQFxSa384Ut1bg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1608218735571?e=1778112000&v=beta&t=y0yzmN2-55wulMSrK5QigASa_8o9vKDme4tlXV6pwqU",
+  "linkedin": "https://www.linkedin.com/in/farih-faiz-667a11193/",
+  "email": "farih@kurevi.com",
+  "phone": ""
+}
 ];
 
 export default function About() {
@@ -58,8 +58,8 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-6xl lg:text-7xl font-black leading-none uppercase tracking-tighter mb-12"
             >
-              WE ARE A SPECIALIZED <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--foreground)] to-[var(--muted)]">DIGITAL PRODUCTION UNIT.</span>
+              WE BUILD POWERFUL <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--foreground)] to-[var(--muted)]">DIGITAL PRODUCTS.</span>
             </motion.h1>
             
             <motion.div 
@@ -69,17 +69,17 @@ export default function About() {
               className="prose prose-lg dark:prose-invert max-w-3xl"
             >
               <p className="text-xl md:text-2xl font-medium leading-relaxed text-[var(--foreground)]/90 mb-8">
-                We operate at the intersection of <span className="font-serif italic font-normal">Advanced Technology</span> and creative expression, engineering bespoke digital architectures that redefine the boundaries of the social web.
+                We mix modern <span className="font-serif italic font-normal">Technology</span> with bold creative design to build websites and apps that actually stand out and get results.
               </p>
               
               <div className="h-px w-full bg-[var(--border)] my-12"></div>
               
               <h3 className="text-2xl font-bold uppercase tracking-tight mb-4">Our Main Goal</h3>
               <p className="text-[var(--muted)] leading-relaxed mb-6">
-                At Kurevi, our primary objective is to strip away the unnecessary. We believe that the most powerful digital experiences are born from constraint and brutal honesty. We don't just build websites or apps; we architect digital ecosystems that are highly performant, visually striking, and completely uncompromising.
+                At Kurevi, we keep things simple and direct. We remove the clutter to create websites that are fast, easy to use, and beautiful. We don't just write code—we build connected digital systems that work perfectly and look amazing.
               </p>
               <p className="text-[var(--muted)] leading-relaxed">
-                We partner with brands that are willing to take risks. Brands that want to stand out in a sea of templates. Our goal is to elevate your digital presence from a mere utility to a memorable, high-impact brand asset that drives real business results.
+                We work with ambitious brands that want to stand out from boring templates. Our goal is to turn your digital presence into a powerful tool that brings real value and growth to your business.
               </p>
             </motion.div>
           </div>
@@ -112,11 +112,6 @@ export default function About() {
             >
               {/* Image Side */}
               <div className="w-full lg:w-1/2 relative">
-                {/* Decorative Offset Box */}
-                <div className={`absolute top-4 sm:top-6 lg:top-12 ${i % 2 === 0 ? '-left-4 sm:-left-6 lg:-left-12' : '-right-4 sm:-right-6 lg:-right-12'} w-full h-full border border-[var(--border)] z-0 bg-[var(--background)] group-hover:translate-x-4 group-hover:translate-y-4 transition-transform duration-700 ease-out`}>
-                  <div className="w-full h-full opacity-[0.03] noise-bg"></div>
-                </div>
-                
                 {/* Main Image */}
                 <div className="aspect-[4/5] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 relative z-10 border border-[var(--border)] bg-[#111]">
                   <img 

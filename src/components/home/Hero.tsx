@@ -48,10 +48,10 @@ export default function Hero() {
           className="mt-12 flex flex-col sm:flex-row items-center gap-6"
         >
           <Link to="/services" className="pill-button-primary group">
-            <span className="relative z-10">Initialize Project</span>
+            <span className="relative z-10">Start a Project</span>
           </Link>
           <Link to="/work" className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-all group flex items-center gap-2">
-            View Archives <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            View Our Work <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>

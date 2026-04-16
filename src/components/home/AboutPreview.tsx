@@ -20,14 +20,14 @@ export default function AboutPreview() {
               viewport={{ once: true }}
               className="text-2xl md:text-4xl lg:text-5xl font-medium leading-tight uppercase text-[var(--foreground)]/90 mb-16"
             >
-              KUREVI IS A SPECIALIZED DIGITAL PRODUCTION UNIT. WE OPERATE AT THE INTERSECTION OF <span className="font-serif italic normal-case font-normal tracking-normal text-[var(--foreground)]">Advanced Technology</span> AND CREATIVE EXPRESSION, ENGINEERING BESPOKE DIGITAL ARCHITECTURES THAT <span className="underline decoration-2 underline-offset-8">REDEFINE</span> THE BOUNDARIES OF THE SOCIAL WEB.
+              KUREVI IS A DIGITAL CREATIVE AGENCY. WE MIX BOLD <span className="font-serif italic normal-case font-normal tracking-normal text-[var(--foreground)]">Technology</span> AND SHARP DESIGN TO BUILD EXPERIENCES THAT <span className="underline decoration-2 underline-offset-8">STAND OUT</span> AND DRIVE REAL BUSINESS GROWTH.
             </motion.h2>
             
             <div className="grid grid-cols-3 gap-10 mb-16 border-t border-[var(--border)] pt-12">
               {[
-                { val: "100+", label: "deployments" },
-                { val: "32", label: "nodes" },
-                { val: "3", label: "hubs" }
+                { val: "100+", label: "projects" },
+                { val: "32", label: "clients" },
+                { val: "3", label: "locations" }
               ].map((stat, i) => (
                 <div key={i} className="group">
                   <div className="text-3xl md:text-5xl font-black mb-2 tracking-tighter">{stat.val}</div>
