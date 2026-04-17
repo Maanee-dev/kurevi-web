@@ -3,6 +3,7 @@ import { Share2, Zap, Palette, PenTool, Layout, Search, ArrowRight } from 'lucid
 import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
 import SEO from '@/src/components/SEO';
+import { useTheme } from '../contexts/ThemeContext';
 
 const services = [
   {
@@ -50,6 +51,8 @@ const services = [
 ];
 
 export default function Services() {
+  const { theme } = useTheme();
+
   return (
     <div className="pt-32 pb-24 bg-[var(--background)] min-h-screen">
       <SEO 
@@ -94,7 +97,9 @@ export default function Services() {
                 <div 
                   className="absolute top-1/2 left-1/2 w-[160%] h-[160%] -translate-x-1/2 -translate-y-1/2 scale-90 group-hover:scale-100 opacity-90 transition-transform duration-1000 ease-out blur-3xl pointer-events-none"
                   style={{
-                    background: "radial-gradient(ellipse 60% 80% at center, #000000 15%, #ff3b00 45%, #ff1ea0 65%, #100bdf 85%, transparent 100%)"
+                    background: theme === 'dark'
+                      ? "radial-gradient(ellipse 60% 80% at center, #000000 15%, #ff3b00 45%, #ff1ea0 65%, #100bdf 85%, transparent 100%)"
+                      : "radial-gradient(ellipse 60% 80% at center, #ffffff 15%, #ffbdaa 45%, #ff8ae0 65%, #8abeff 85%, transparent 100%)"
                   }}
                 ></div>
                 <div 
@@ -134,7 +139,7 @@ export default function Services() {
                   ))}
                 </ul>
                 
-                <Link to={service.slug} className="inline-flex items-center text-xs font-bold uppercase tracking-widest mt-4 group-hover:text-[#ff8a9f] transition-colors">
+                <Link to={service.slug} className={`inline-flex items-center text-xs font-bold uppercase tracking-widest mt-4 ${theme === 'dark' ? 'group-hover:text-[#ff8a9f]' : 'group-hover:text-[#ff3b00]'} transition-colors`}>
                   Learn More <ArrowRight size={14} className="ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                 </Link>
               </div>

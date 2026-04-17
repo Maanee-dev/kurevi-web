@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const projects = [
   {
@@ -27,6 +28,8 @@ const projects = [
 ];
 
 export default function FeaturedWork() {
+  const { theme } = useTheme();
+
   return (
     <section className="py-32 bg-[var(--background)] border-t border-[var(--border)] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,11 +84,11 @@ export default function FeaturedWork() {
               </div>
               
               {/* Right Image */}
-              <div className="w-full md:w-1/2 relative bg-[#111] min-h-[40vh] md:min-h-auto">
+              <div className="w-full md:w-1/2 relative bg-[var(--background)] min-h-[40vh] md:min-h-auto">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                  className={`absolute inset-0 w-full h-full object-cover ${theme === 'dark' ? 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100' : 'opacity-100'} transition-all duration-700`}
                   referrerPolicy="no-referrer"
                 />
               </div>

@@ -18,7 +18,7 @@ export default function Footer() {
           className="w-full h-full object-cover opacity-70 mix-blend-overlay"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[var(--background)]/80 to-[var(--background)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] from-0% via-[var(--background)]/80 via-30% to-transparent to-100% pointer-events-none"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

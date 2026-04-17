@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Linkedin, Mail, Phone } from 'lucide-react';
 import SEO from '@/src/components/SEO';
+import { useTheme } from '../contexts/ThemeContext';
 
 const team = [
   {
@@ -42,6 +43,8 @@ const team = [
 ];
 
 export default function About() {
+  const { theme } = useTheme();
+
   return (
     <div className="pt-32 pb-24 min-h-screen">
       <SEO 
@@ -118,14 +121,16 @@ export default function About() {
               {/* Image Side */}
               <div className="w-full lg:w-1/2 relative">
                 {/* Main Image */}
-                <div className="aspect-[4/5] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 relative z-10 border border-[var(--border)] bg-[#111]">
+                <div className={`aspect-[4/5] overflow-hidden ${theme === 'dark' ? 'grayscale group-hover:grayscale-0' : ''} transition-all duration-700 relative z-10 border border-[var(--border)] bg-[var(--background)]`}>
                   <img 
                     src={member.image} 
                     alt={member.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-700"></div>
+                  {theme === 'dark' && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-700"></div>
+                  )}
                 </div>
               </div>
 

@@ -1,8 +1,11 @@
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import SEO from '@/src/components/SEO';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function Work() {
+  const { theme } = useTheme();
+
   return (
     <div className="pt-32 pb-24">
       <SEO 
@@ -32,7 +35,7 @@ export default function Work() {
                 <img 
                   src={`https://picsum.photos/seed/${project.title}/1200/800`} 
                   alt={project.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                  className={`w-full h-full object-cover ${theme === 'dark' ? 'grayscale group-hover:grayscale-0' : ''} group-hover:scale-110 transition-all duration-1000`}
                   referrerPolicy="no-referrer"
                 />
               </div>

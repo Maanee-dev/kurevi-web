@@ -1,11 +1,28 @@
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function AboutPreview() {
+  const { theme } = useTheme();
+
   return (
-    <section className="py-32 border-t border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-32 border-t border-[var(--border)] relative overflow-hidden">
+      {/* Soft Blurred Background Image (Light Mode Only) */}
+      {theme === 'light' && (
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img 
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2500&auto=format&fit=crop" 
+            alt="About Background" 
+            className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30 scale-110"
+          />
+          {/* Soft edge fading to blend into the rest of the page */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-transparent to-[var(--background)] opacity-90"></div>
+          <div className="absolute inset-0 bg-white/40 mix-blend-overlay"></div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-3">
             <span className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] flex items-center">

@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function FounderQuote() {
+  const { theme } = useTheme();
   const englishQuote = "Marketing shouldn't be expensive. We help our local entrepreneurs grow by providing seamless workflows at affordable prices. You handle your daily operations, and we handle the marketing. We partner with you from day one to ensure you stand out in the market and increase conversions.";
 
   return (
@@ -21,11 +23,11 @@ export default function FounderQuote() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-5 lg:col-span-4"
           >
-            <div className="aspect-[4/5] border border-[var(--border)] overflow-hidden bg-[#111] relative group">
+            <div className="aspect-[4/5] border border-[var(--border)] overflow-hidden bg-[var(--background)] relative group">
               <img 
                 src="https://media.licdn.com/dms/image/v2/D5603AQF9gtFajlniMw/profile-displayphoto-crop_800_800/B56Z1qQv62KAAI-/0/1775604273773?e=1778112000&v=beta&t=wI7R29Hw3rtvj_sv2mIwv2hAaL6qiMbhlXKrMAAL-vA" 
                 alt="Maanee Ali - Founder" 
-                className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
+                className={`w-full h-full object-cover ${theme === 'dark' ? 'grayscale opacity-90' : 'opacity-100'} group-hover:scale-105 transition-transform duration-700 ease-out`}
                 referrerPolicy="no-referrer"
               />
             </div>
