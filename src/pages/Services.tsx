@@ -7,45 +7,45 @@ import SEO from '@/src/components/SEO';
 const services = [
   {
     title: "Social Media Marketing",
-    description: "Strategic content and community management across all major platforms. We build presence that converts followers into fans.",
+    description: "Strategic content and community management across all major platforms. We develop culturally resonant campaigns that turn casual Maldivian scrollers into loyal, purchasing customers.",
     icon: Share2,
     features: ["Platform Strategy", "Content Calendars", "Community Management", "Influencer Outreach"],
-    slug: "/services/digital-marketing"
+    slug: "/services/social-media-marketing"
   },
   {
     title: "Paid Advertising",
-    description: "High-ROI campaigns on Google, Meta, and LinkedIn with AI optimization. We focus on CAC and LTV metrics.",
+    description: "High-ROI campaigns on Google, Meta, and LinkedIn with AI optimization. We target exact demographics across the atolls to maximize conversions while ruthlessly lowering your acquisition costs.",
     icon: Zap,
     features: ["Search Ads", "Social Ads", "Retargeting", "A/B Testing"],
-    slug: "/services/digital-marketing"
+    slug: "/services/paid-advertising"
   },
   {
     title: "Branding",
-    description: "Identity design that captures your vision and resonates with your audience. We build brands that stand the test of time.",
+    description: "Identity design that captures your vision and resonates with your audience. We forge striking, unforgettable brands that stand out in the crowded Maldivian market and beyond.",
     icon: Palette,
     features: ["Logo Design", "Visual Identity", "Brand Voice", "Style Guides"],
-    slug: "/services/creative-design"
+    slug: "/services/branding"
   },
   {
     title: "Content Creation",
-    description: "Premium video, photo, and copy that tells your brand's unique story. High-quality production for high-quality brands.",
+    description: "Premium video, photo, and copy that tells your brand's unique story. We produce high-fidelity media designed not just to look beautiful, but to actively drive action and sales.",
     icon: PenTool,
     features: ["Video Production", "Photography", "Copywriting", "Motion Graphics"],
-    slug: "/services/creative-design"
+    slug: "/services/content-creation"
   },
   {
     title: "Web Design",
-    description: "Modern, high-converting websites built with a product-first mindset. Fast, responsive, and beautiful.",
+    description: "Modern, high-converting websites built with a product-first mindset. Fast, responsive, and robustly engineered to serve as your ultimate 24/7 digital salesperson.",
     icon: Layout,
     features: ["UI/UX Design", "Responsive Web", "E-commerce", "Performance Optimization"],
-    slug: "/services/web-development"
+    slug: "/services/web-design"
   },
   {
     title: "SEO",
-    description: "Technical and content optimization to dominate search rankings. Long-term growth through organic visibility.",
+    description: "Technical and content optimization to dominate search rankings. Secure lasting organic visibility and capture high-intent traffic without relying heavily on paid aggregators.",
     icon: Search,
     features: ["Technical SEO", "Keyword Research", "On-page Optimization", "Backlink Strategy"],
-    slug: "/services/digital-marketing"
+    slug: "/services/seo"
   },
 ];
 
@@ -62,7 +62,7 @@ export default function Services() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-none mb-6"
+            className="text-[12vw] sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.9] mb-6 break-words"
           >
             OUR <br /> CAPABILITIES.
           </motion.h1>
@@ -70,7 +70,7 @@ export default function Services() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-[var(--muted)] max-w-2xl font-medium"
+            className="text-lg md:text-xl text-[var(--muted)] max-w-2xl font-medium mt-8"
           >
             Specialized solutions designed to build, scale, and define your brand in a crowded digital landscape.
           </motion.p>

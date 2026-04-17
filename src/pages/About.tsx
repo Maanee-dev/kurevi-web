@@ -32,8 +32,8 @@ const team = [
 },
 {
   "name": "Farih Faiz",
-  "role": "Head of Marketing",
-  "description": "Focused on building brand presence and driving growth through clear strategy and execution. Farih works on turning ideas into campaigns that connect, convert, and scale across digital platforms.",
+  "role": "Executive Director - Finance",
+  "description": "Leads financial strategy, planning, and operational oversight to ensure sustainable growth and profitability. Farih focuses on budgeting, forecasting, and optimizing financial performance, supporting data-driven decisions across the organization.",
   "image": "https://media.licdn.com/dms/image/v2/C5603AQFxSa384Ut1bg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1608218735571?e=1778112000&v=beta&t=y0yzmN2-55wulMSrK5QigASa_8o9vKDme4tlXV6pwqU",
   "linkedin": "https://www.linkedin.com/in/farih-faiz-667a11193/",
   "email": "farih@kurevi.com",

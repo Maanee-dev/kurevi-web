@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
+import { useTheme } from '../contexts/ThemeContext';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -14,9 +15,10 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[var(--background)]">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[var(--background)]/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -42,13 +44,26 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
+            <button 
+              onClick={toggleTheme} 
+              className="p-2 text-[var(--foreground)] hover:text-[var(--muted)] transition-colors"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <Link to="/contact" className="text-xs font-bold bg-[var(--foreground)] text-[var(--background)] px-6 py-2 rounded-full hover:opacity-90 transition-all duration-300 flex items-center">
-              <span className="mr-2 text-[10px]">●</span> Contact
+              <span className="mr-2 text-[10px]"></span> Contact
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
+            <button 
+              onClick={toggleTheme} 
+              className="p-2 text-[var(--foreground)] hover:text-[var(--muted)] transition-colors"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg hover:bg-[var(--border)]/10 transition-colors"

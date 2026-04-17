@@ -1,9 +1,13 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function Starfield() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
+    if (theme === 'light') return; // Skip canvas drawing in light mode, use CSS instead
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -61,12 +65,24 @@ export default function Starfield() {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]); 
+
+  if (theme === 'light') {
+    return (
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 opacity-40 bg-cover bg-center"
+        style={{
+           backgroundImage: "url('https://img.freepik.com/premium-photo/beautiful-blue-sky-background-with-cloud-sunny-day-light_9693-1781.jpg')",
+           backgroundAttachment: "fixed"
+        }}
+      />
+    );
+  }
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-30 dark:opacity-50"
+      className={`fixed inset-0 pointer-events-none z-0 opacity-50`}
       style={{ mixBlendMode: 'screen' }}
     />
   );

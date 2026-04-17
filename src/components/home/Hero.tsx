@@ -1,19 +1,25 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function Hero() {
+  const { theme } = useTheme();
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[var(--background)]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://i.pinimg.com/736x/8e/2b/de/8e2bde03e3296e23d74e619f12d97af4.jpg" 
+          src={theme === 'dark' 
+            ? "https://i.pinimg.com/736x/8e/2b/de/8e2bde03e3296e23d74e619f12d97af4.jpg" 
+            : "https://images.kurevi.com/light-mode.png"
+          } 
           alt="Background" 
-          className="w-full h-full object-cover  opacity-70 mix-blend-overlay"
+          className="w-full h-full object-cover opacity-90 mix-blend-overlay"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--background)]/20 to-[var(--background)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--background)]/40 to-[var(--background)]"></div>
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center w-full px-4 text-center mt-20">
@@ -34,7 +40,7 @@ export default function Hero() {
         >
           For <span className="relative inline-block">
             <span className="relative z-10">Brands</span>
-            <svg className="absolute -inset-2 md:-inset-4 w-[calc(100%+16px)] md:w-[calc(100%+32px)] h-[calc(100%+16px)] md:h-[calc(100%+32px)] z-0 text-white opacity-80" viewBox="0 0 200 100" preserveAspectRatio="none">
+            <svg className="absolute -inset-2 md:-inset-4 w-[calc(100%+16px)] md:w-[calc(100%+32px)] h-[calc(100%+16px)] md:h-[calc(100%+32px)] z-0 text-[var(--foreground)] opacity-80" viewBox="0 0 200 100" preserveAspectRatio="none">
               <path d="M100,5 C150,5 195,25 195,50 C195,75 150,95 100,95 C50,95 5,75 5,50 C5,25 50,5 100,5 Z" fill="none" stroke="currentColor" strokeWidth="3" vectorEffect="non-scaling-stroke" />
             </svg>
           </span> <br /> 

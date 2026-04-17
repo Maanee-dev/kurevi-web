@@ -5,52 +5,70 @@ import { useEffect } from 'react';
 import SEO from '@/src/components/SEO';
 
 const serviceDetails = {
-  "web-development": {
-    title: "Web Development",
-    description: "We build custom websites that are fast, secure, and easy to manage. We focus on writing clean code so your site works perfectly for all your visitors.",
-    details: "Your website is your digital storefront. We meticulously craft web experiences that are not only visually striking but architected for peak performance. From simple landing pages to complex web applications, our engineering standards ensure load times are minimal, SEO is optimized, and backend systems are scalable.",
+  "social-media-marketing": {
+    title: "Social Media Marketing",
+    description: "Build a Following That Actually Buys. We transform passive scrollers into active customers, cultivating digital communities that drive measurable revenue across the Maldives.",
+    details: "Whether you're a café building a community of regulars in Malé, an online store shipping reef-safe sunscreen nationwide, or a luxury resort filling overwater villas—your social media needs to convert. We create platform-specific strategies that turn your digital presence into a measurable growth engine.\n\nWe go beyond vanity metrics like likes and follows. Our team dives deep into your business model to understand your target audience, designing content that resonates with Maldivians and international visitors alike. By leveraging data-driven insights and creative storytelling, we ensure your brand remains top-of-mind.",
     features: [
-      "Custom Frontend Architecture",
-      "Headless CMS Integration",
-      "Performance Optimization",
-      "Responsive & Mobile-First Design",
-      "Technical SEO Implementation",
+      { title: "Platform Strategy", text: "Different businesses, different channels. Instagram and TikTok for cafés showcasing latte art and ambiance. Facebook for reaching local Maldivian customers across all atolls. LinkedIn for B2B suppliers and corporate partnerships. Pinterest for e-commerce products with visual appeal. We match your business to the platforms where your customers actually spend time." },
+      { title: "Content Calendars", text: "Strategic posting rhythms aligned with your business cycles: Ramadan promotions, holiday shipping deadlines, weekend brunch rushes, or tourism seasonality. Never miss a moment when your customers are ready to buy—whether they're Malé locals planning Friday lunch or European tourists booking six months out." },
+      { title: "Community Management", text: "Reply to DMs about your café's halal options. Respond to comments asking if you ship to Thaa Atoll. Handle reviews on Google Business and Facebook with the cultural sensitivity and speed that Maldivian customers expect. We turn casual engagement into loyal relationships." },
+      { title: "Influencer Outreach", text: "From Maldivian food bloggers reviewing your new café menu to travel influencers showcasing your resort's sustainability initiatives to micro-influencers demonstrating your e-commerce products—we connect you with voices your target audience already trusts." }
     ]
   },
-  "digital-marketing": {
-    title: "Digital Marketing",
-    description: "We help you reach the right people online. From social media to search engines, our campaigns are designed to get you real customers and clear results.",
-    details: "Visibility is nothing without conversion. Our digital marketing strategies bypass vanity metrics and focus entirely on return on investment. We analyze audience behaviors to deploy targeted, data-backed campaigns across search engines and social platforms, adapting in real time to what actually moves the needle.",
+  "paid-advertising": {
+    title: "Paid Advertising",
+    description: "Every Rufiyaa Working Harder. Maximize your return on ad spend with precision-targeted campaigns that reach local Maldivian customers and high-value international tourists perfectly timed.",
+    details: "The Maldivian market is uniquely complex: a dispersed geography across 26 atolls, a dynamic mix of local customers and international tourists, and intense competition in hospitality and retail. Our paid campaigns are precision-engineered for your specific business model, ensuring no advertising budget is wasted.\n\nWe continuously monitor, test, and adapt our strategies. By analyzing conversion data and audience behavior, we allocate your budget to the highest-performing channels. From Google Search to Meta platforms, we position your offers directly in front of the people actively seeking your products and services.",
     features: [
-      "Search Engine Optimization (SEO)",
-      "Pay-Per-Click Ad Campaigns",
-      "Social Media Strategy",
-      "Conversion Rate Optimization",
-      "Growth Analytics & Reporting",
+      { title: "Search Ads", text: `Capture high-intent searches: "best coffee in Malé," "online gift delivery Maldives," "speedboat transfer booking," or "Maldives resort packages." We bid on the keywords that indicate buying intent, write copy that speaks to local and international audiences, and build landing pages that convert.` },
+      { title: "Social Ads", text: `Meta advertising optimized for Maldivian realities: carousel ads for your café's new menu items, collection ads for your e-commerce product range, lead generation ads for B2B services. Targeted by location (Malé, Addu, specific atolls), demographics, and interests—ensuring your budget reaches actual potential customers.` },
+      { title: "Retargeting", text: `The customer journey is rarely instant. We build retargeting sequences for: website visitors who didn't purchase, cart abandoners from your online store, Instagram engagers who haven't visited yet, past customers who haven't returned. Different messages, same goal—conversion.` },
+      { title: "A/B Testing", text: `Continuous optimization of creative (product photography vs. lifestyle shots), copy (price-focused vs. quality-focused), and audience segments (Malé professionals vs. resort workers vs. international tourists). Every campaign teaches us how to improve your return on ad spend.` }
     ]
   },
-  "creative-design": {
-    title: "Creative Design",
-    description: "We make your brand look amazing. We design logos, graphics, and websites that catch the eye and clearly speak to your target audience.",
-    details: "In a noisy digital world, strict and purposeful aesthetic direction is your biggest advantage. We develop brand identities and user interfaces rooted in brutalist and minimalist principles—stripping away fluff to communicate your core message with absolute clarity and unforgettable visual impact.",
+  "branding": {
+    title: "Branding",
+    description: "Stand Out in a Sea of Sameness. We forge striking, unforgettable brand identities that resonate deeply with local communities while competing flawlessly on the global stage.",
+    details: "From a bustling café on Chaandhanee Magu to an e-commerce brand shipping nationwide, or a luxury resort on a private island—every Maldivian business needs a potent, distinct identity. We build brands that not only attract attention but stand the test of time.\n\nOur branding process strips away the generic fluff to discover your core narrative. We develop comprehensive visual identities, cohesive brand voices, and strict design systems that ensure your company looks, sounds, and feels premium across every physical and digital touchpoint.",
     features: [
-      "Visual Brand Identity",
-      "UI/UX Design Systems",
-      "Creative Direction",
-      "Motion Graphics & Animation",
-      "Marketing Collateral",
+      { title: "Logo Design", text: `Marks that work everywhere your business appears: Instagram profile pictures, coffee cup sleeves, delivery vehicle decals, product packaging, and international trade show banners. Scalable, memorable, and meaningful—whether you're serving dhoni captains or honeymooners.` },
+      { title: "Visual Identity", text: `Color palettes inspired by Maldivian context: the turquoise of resort lagoons, the vibrant hues of local market produce, the sophisticated neutrals of urban Malé cafés. Typography that balances Dhivehi script compatibility with international aesthetics. Photography direction that captures your specific reality.` },
+      { title: "Brand Voice", text: `How does your café speak to morning regulars? How does your e-commerce brand describe products to customers who've never touched them? How does your resort welcome guests from Tokyo, London, and Malé in the same week? We define tone, vocabulary, and messaging that adapts across contexts while remaining unmistakably you.` },
+      { title: "Style Guides", text: `Comprehensive brand documentation for consistency across touchpoints: social media templates, email newsletters, packaging design, staff uniforms, signage, and delivery app profiles. Your brand stays coherent whether a customer encounters you on Instagram, in person, or unboxing a delivery.` }
     ]
   },
-  "e-commerce": {
-    title: "E-Commerce Solutions",
-    description: "Start selling online the easy way. We create digital stores that look great and make the buying process fast and secure for your customers.",
-    details: "The bridge between a browser and a buyer is frictionless design. We architect e-commerce platforms that prioritize speed, security, and intuitive navigation. By integrating robust payment gateways and creating seamless checkout experiences, we turn your store into a high-converting digital retail environment.",
+  "content-creation": {
+    title: "Content Creation",
+    description: "Content That Sells, Not Just Looks Good. Beautiful aesthetics are expected; we produce high-fidelity media that actively drives reservations, purchases, and inquiries.",
+    details: "Beautiful visuals are expected in the Maldives. However, we create content designed specifically to drive action: café reservations, online purchases, booking inquiries, and long-term brand loyalty. We provide premium production tailored precisely to your operational reality.\n\nOur in-house creatives know how to translate a brand's essence into compelling narratives. Whether it is a cinematic drone shot of your property, mouth-watering menu photography, or persuasive product copywriting, every piece of media we generate serves a specific psychological purpose in the buyer's journey.",
     features: [
-      "Custom Storefront Development",
-      "Shopify & WooCommerce Integration",
-      "Secure Payment Solutions",
-      "Inventory Management Systems",
-      "Frictionless Checkout Flows",
+      { title: "Video Production", text: `Cinematic resort films and drone footage, yes—but also: quick-turn TikToks showing your café's barista at work, product demonstration videos for your e-commerce site, customer testimonial captures, and Reels showcasing your restaurant's busiest (and most tempting) service moments.` },
+      { title: "Photography", text: `Menu photography that increases average order value. Product shots with consistent lighting for your online store. Lifestyle imagery showing real Maldivian customers using your products. Architectural photography for your space. Every image optimized for its platform and purpose.` },
+      { title: "Copywriting", text: `Website copy that ranks in search and converts visitors. Product descriptions that reduce return rates. Social captions that drive engagement. Email sequences that recover abandoned carts and encourage repeat purchases. Menu descriptions that justify premium pricing. Every word working for your business goals.` },
+      { title: "Motion Graphics", text: `Animated logos for video intros. Infographic explainers for your delivery process or sustainability practices. Dynamic social ads. Presentation templates for investor pitches or B2B partnerships. Motion that catches attention in crowded feeds.` }
+    ]
+  },
+  "web-design": {
+    title: "Web Design",
+    description: "Websites That Work as Hard as You Do. We architect lightning-fast, highly-converting digital storefronts tailored specifically to your customers' habits.",
+    details: "Your website is your 24/7 salesperson: taking café reservations while you sleep, processing e-commerce orders across time zones, or converting resort inquiries into confirmed bookings. We build digital experiences optimized entirely for your specific business model and revenue goals.\n\nWe combine striking minimalist aesthetics with rigorous performance standards. Our sites are engineered for flawless mobile responsiveness on varying network speeds, robust e-commerce capabilities bridging local and international gateways, and seamless user experiences ensuring zero friction between your visitor and their transaction.",
+    features: [
+      { title: "UI/UX Design", text: `User flows designed around actual customer behavior: quick menu browsing and reservation for cafés. Filtered product discovery and streamlined checkout for e-commerce. Inspiration-heavy browsing to detailed comparison to booking for hospitality. Every click mapped, every friction point eliminated.` },
+      { title: "Responsive Web", text: `Flawless performance on the devices Maldivian customers actually use: smartphones on 4G connections, tablets in cafés, desktops in offices. Fast loading despite infrastructure challenges. Touch-friendly interfaces for on-the-go browsing. Your site works perfectly whether accessed from Hulhumalé or Hamburg.` },
+      { title: "E-commerce", text: `Online stores built for Maldivian realities: inventory management across multiple locations, payment integration handling local cards and international options, shipping rate calculation across atolls, and abandoned cart recovery. Whether you're selling to Malé or Miami, the experience is seamless.` },
+      { title: "Performance Optimization", text: `Speed that satisfies impatient customers and search algorithms. Image optimization for visual products without crushing load times. Reliable hosting that stays up during sales peaks. Technical foundations that support your marketing investments.` }
+    ]
+  },
+  "seo": {
+    title: "SEO",
+    description: "Be Found When Customers Are Searching. Dominate search rankings and capture high-intent traffic with sustainable organic visibility.",
+    details: "When someone searches 'best breakfast Malé,' 'buy skincare online Maldives,' or 'luxury resort booking'—you need to appear first. Our deep-rooted SEO strategies build sustainable organic visibility that secures long-term digital real estate for your brand, reducing dependency on competitive paid ads over time.\n\nWe tackle SEO from every angle: technical site architecture, localized keyword mapping, high-quality content production, and authoritative backlinking. By aligning your website perfectly with how your distinct audience searches locally or globally, we turn search engines into your most reliable source of inbound leads.",
+    features: [
+      { title: "Technical SEO", text: `Site architecture that search engines understand and users navigate easily. Schema markup for local businesses (opening hours, location, reviews) and e-commerce (products, prices, availability). Fast loading despite image-heavy content. Mobile-first optimization for Maldivian browsing habits.` },
+      { title: "Keyword Research", text: `Analysis of how your customers actually search: local terms ("near me," "in Malé"), product-specific queries, comparison searches ("vs" keywords), and intent-based terms (informational, commercial, transactional). We identify where you can compete and win.` },
+      { title: "On-page Optimization", text: `Title tags and meta descriptions that earn clicks from search results. Content structured for featured snippets. Internal linking that distributes authority. Product page optimization that ranks and converts. Blog content that captures research-phase customers and nurtures them toward purchase.` },
+      { title: "Backlink Strategy", text: `Local citations in Maldivian business directories. Features in travel and lifestyle publications for hospitality businesses. Product reviews and unboxing content for e-commerce brands. Supplier and partner link exchanges. Building the authority signals that push you up the rankings.` }
     ]
   }
 };
@@ -65,7 +83,10 @@ export default function ServiceDetail() {
         title: slug?.replace('-', ' ').toUpperCase() || "SERVICE",
         description: "Specialized digital service offering customized for our clients.",
         details: "This service provides advanced digital tooling and solutions tailored to brand-specific requirements. Our process guarantees high fidelity, scalable outputs that match your vision.",
-        features: ["Strategic Planning", "Custom Execution", "Quality Assurance", "Ongoing Support"]
+        features: [
+          { title: "Strategic Planning", text: "Discovery phase targeting business objectives." },
+          { title: "Custom Execution", text: "High quality deliverables built to scale." }
+        ]
       };
 
   useEffect(() => {
@@ -79,7 +100,7 @@ export default function ServiceDetail() {
         description={service.description}
         keywords={`${service.title.toLowerCase()} service Maldives, Kurevi ${service.title.toLowerCase()}, digital marketing Maldives, bespoke tech architecture`}
       />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <Link to="/services" className="inline-flex items-center text-xs font-mono uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-20 group">
           <ArrowLeft size={14} className="mr-3 group-hover:-translate-x-1 transition-transform" />
@@ -111,30 +132,35 @@ export default function ServiceDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="prose prose-lg dark:prose-invert max-w-none"
+          className="max-w-none"
         >
-          <p className="text-2xl md:text-3xl font-medium leading-relaxed text-[var(--foreground)] mb-12">
+          <p className="text-2xl md:text-3xl font-medium leading-relaxed text-[var(--foreground)] mb-12 max-w-4xl">
             {service.description}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
-            <div className="md:col-span-2">
+          <div className="mt-20">
+            <div className="mb-20">
               <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--muted)] mb-6">Overview</h3>
-              <p className="text-[var(--foreground)]/80 leading-relaxed font-medium">
+              <p className="text-[var(--foreground)]/80 leading-relaxed font-medium text-xl max-w-4xl whitespace-pre-wrap">
                 {service.details}
               </p>
             </div>
             
-            <div className="md:col-span-1 bg-[var(--border)]/10 p-8 border border-[var(--border)]">
-              <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--muted)] mb-8">Capabilities</h3>
-              <ul className="space-y-4 m-0 p-0 list-none">
+            <div className="border-t border-[var(--border)] pt-16">
+              <h3 className="text-4xl font-black uppercase tracking-tighter mb-12">What We Deliver</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start text-sm uppercase tracking-wider font-medium">
-                    <span className="text-[var(--muted)] mr-3 mt-1">●</span>
-                    {feature}
-                  </li>
+                  <div key={idx} className="bg-[var(--border)]/5 p-8 border border-[var(--border)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors duration-500 group">
+                    <div className="flex items-center text-lg uppercase tracking-tight font-bold mb-4">
+                       <span className="w-1.5 h-1.5 bg-[var(--border)] group-hover:bg-[var(--background)] transition-colors duration-500 mr-3"></span>
+                       {feature.title}
+                    </div>
+                    <p className="text-[var(--foreground)]/70 group-hover:text-[var(--background)]/80 transition-colors duration-500 leading-relaxed text-sm">
+                       {feature.text}
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </motion.div>

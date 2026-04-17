@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function Footer() {
+  const { theme } = useTheme();
+
   return (
     <footer className="bg-[var(--background)] pt-32 pb-12 overflow-hidden relative z-10">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="https://i.pinimg.com/736x/8e/2b/de/8e2bde03e3296e23d74e619f12d97af4.jpg" 
+          src={theme === 'dark' 
+            ? "https://i.pinimg.com/736x/8e/2b/de/8e2bde03e3296e23d74e619f12d97af4.jpg" 
+            : "https://images.kurevi.com/light-mode.png"
+          } 
           alt="Background" 
           className="w-full h-full object-cover opacity-70 mix-blend-overlay"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[var(--background)]/50 to-[var(--background)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[var(--background)]/80 to-[var(--background)]"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -59,7 +65,7 @@ export default function Footer() {
         {/* Massive Footer Logo */}
         <div className="w-full flex justify-center items-center border-b border-[var(--border)] pb-12 mb-12">
           <span className="text-[18vw] font-black tracking-tighter leading-none uppercase text-[var(--foreground)] w-full text-center">
-            KUREVI<span className="text-[4vw] align-top"></span>
+            KUREVI.<span className="text-[4vw] align-top"></span>
           </span>
         </div>
 
