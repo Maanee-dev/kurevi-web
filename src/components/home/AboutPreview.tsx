@@ -12,7 +12,7 @@ export default function AboutPreview() {
       {theme === 'light' && (
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img 
-            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2500&auto=format&fit=crop" 
+            src="https://media.istockphoto.com/id/1793119595/photo/blue-sky-background.jpg?s=612x612&w=0&k=20&c=ZjZwjFzzz7va-VQJ79_0u8tbvshgjt8zIj4XVdhDNjI=" 
             alt="About Background" 
             className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30 scale-110"
           />

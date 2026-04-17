@@ -45,7 +45,7 @@ export default function FounderQuote() {
               <span className="text-6xl md:text-8xl text-[var(--muted)] opacity-20 font-serif leading-none select-none">"</span>
             </div>
             
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-[var(--foreground)] leading-relaxed md:leading-relaxed relative font-normal mb-10 max-w-3xl">
+            <h2 className="text-xl md:text-2xl xl:text-4xl font-serif text-[var(--foreground)] leading-relaxed lg:leading-[1.6] relative font-normal mb-8 lg:mb-10 max-w-3xl pr-0 md:pr-4 lg:pr-12 xl:pr-0">
               {englishQuote}
             </h2>
             

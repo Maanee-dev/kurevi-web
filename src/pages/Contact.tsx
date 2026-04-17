@@ -1,36 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Send, Phone } from 'lucide-react';
+import { Send, Phone, Info } from 'lucide-react';
+import { useSearchParams, Link } from 'react-router-dom';
 import SEO from '@/src/components/SEO';
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const pkgFromUrl = searchParams.get('pkg') || '';
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    businessType: '',
-    services: '',
-    budget: '',
+    phone: '',
+    package: pkgFromUrl,
     message: '',
   });
+
+  useEffect(() => {
+    if (pkgFromUrl) {
+      setFormState((prev) => ({ ...prev, package: pkgFromUrl }));
+    }
+  }, [pkgFromUrl]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Thank you! Your request has been received.');
+    setFormState({ name: '', email: '', phone: '', package: '', message: '' });
   };
 
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-32 pb-24 min-h-screen bg-[var(--background)] relative z-20">
       <SEO 
         title="Contact Us"
-        description="Get in touch with Kurevi. We are ready to initiate your next big project. Reach out via email, or WhatsApp us."
-        keywords="contact marketing agency Maldives, hire web developer Maldives, Kurevi contact number"
+        description="Get in touch with Kurevi. We are ready to initiate your next big project. Request a package, reach out via email, or WhatsApp us."
+        keywords="contact marketing agency Maldives, hire web developer Maldives, Kurevi contact number, request package"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
             <h1 className="text-6xl md:text-8xl font-bold tracking-tighter uppercase mb-8">Contact <br /> Us.</h1>
             <p className="text-sm text-[var(--muted)] mb-12 max-w-md leading-relaxed">
-              Ready to take your brand to the next level? Fill out the form and we'll get back to you within 24 hours.
+              Ready to take your brand to the next level? Select your desired package and fill out the details below. We'll get back to you within 24 hours.
             </p>
             
             <div className="space-y-8">
@@ -54,47 +64,72 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="cursor-panel p-8 md:p-12 bg-[var(--border)]/5"
+            className="cursor-panel p-8 md:p-12 bg-[var(--border)]/5 border border-[var(--border)]"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Name</label>
-                  <input 
-                    type="text" 
-                    required
-                    className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors"
-                    placeholder="John Doe"
-                    value={formState.name}
-                    onChange={(e) => setFormState({...formState, name: e.target.value})}
-                  />
+              <div className="space-y-2">
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Select Package (Optional)</label>
+                  <Link to="/pricing" className="text-[10px] font-bold uppercase tracking-widest text-[var(--foreground)] opacity-60 hover:opacity-100 transition-opacity border-b border-[var(--foreground)]/20 hover:border-[var(--foreground)] pb-0.5">
+                    Check Packages
+                  </Link>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Email</label>
-                  <input 
-                    type="email" 
-                    required
-                    className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors"
-                    placeholder="john@company.com"
-                    value={formState.email}
-                    onChange={(e) => setFormState({...formState, email: e.target.value})}
-                  />
-                </div>
+                <select 
+                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors appearance-none cursor-pointer"
+                  value={formState.package}
+                  onChange={(e) => setFormState({...formState, package: e.target.value})}
+                >
+                  <option value="" className="text-black">- I'm not sure yet / Custom -</option>
+                  <optgroup label="Web Development" className="text-black font-bold">
+                    <option value="web-feshun" className="text-black font-normal">Web: Feshun (Start)</option>
+                    <option value="web-kurevi" className="text-black font-normal">Web: Kurevi (Business)</option>
+                    <option value="web-kurimagu" className="text-black font-normal">Web: Kurimagu (Enterprise)</option>
+                  </optgroup>
+                  <optgroup label="Social Media" className="text-black font-bold">
+                    <option value="social-feshun" className="text-black font-normal">Social: Feshun (Start)</option>
+                    <option value="social-kurevi" className="text-black font-normal">Social: Kurevi (Business)</option>
+                    <option value="social-kurimagu" className="text-black font-normal">Social: Kurimagu (Enterprise)</option>
+                  </optgroup>
+                </select>
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Message</label>
+                <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Email *</label>
+                <input 
+                  type="email" 
+                  required
+                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                  placeholder="john@company.com"
+                  value={formState.email}
+                  onChange={(e) => setFormState({...formState, email: e.target.value})}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Phone Number *</label>
+                <input 
+                  type="tel" 
+                  required
+                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                  placeholder="+960 7XXXXXX"
+                  value={formState.phone}
+                  onChange={(e) => setFormState({...formState, phone: e.target.value})}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Note (Optional)</label>
                 <textarea 
                   rows={4}
                   className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors resize-none"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us a bit about your business or goals..."
                   value={formState.message}
                   onChange={(e) => setFormState({...formState, message: e.target.value})}
                 />
               </div>
 
               <button type="submit" className="pill-button-primary w-full py-4 group">
-                <span>Send Message</span>
+                <span>Send Request</span>
                 <div className="w-6 h-6 rounded-full bg-[var(--background)] text-[var(--foreground)] flex items-center justify-center group-hover:translate-x-1 transition-transform">
                   <Send size={12} />
                 </div>

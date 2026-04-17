@@ -240,7 +240,7 @@ export default function Pricing() {
 
                 <div className="mt-auto">
                   <Link 
-                    to="/contact" 
+                    to={`/contact?pkg=${activeTab}-${plan.name.toLowerCase()}`}
                     className={cn(
                       "w-full flex items-center justify-center py-4 text-xs font-bold uppercase tracking-widest transition-all duration-300 group-hover:gap-4",
                       plan.highlight 
