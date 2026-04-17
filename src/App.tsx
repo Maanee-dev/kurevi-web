@@ -10,6 +10,8 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Starfield from './components/Starfield';
+import Chatbot from './components/Chatbot';
+import CookiePopup from './components/CookiePopup';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
@@ -48,6 +50,8 @@ export default function App() {
               </Routes>
             </main>
             <Footer />
+            <Chatbot />
+            <CookiePopup />
           </div>
         </Router>
       </ThemeProvider>
