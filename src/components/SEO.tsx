@@ -10,7 +10,7 @@ export default function SEO({ title, description, keywords }: SEOProps) {
   const defaultKeywords = "marketing agency Maldives, best digital marketing in Maldives, Kurevi, web development Maldives, SEO Maldives, branding agency Maldives";
   return (
     <Helmet>
-      <title>{`${title} | Kurevi - Digital Production Unit`}</title>
+      <title>{`${title} | Kurevi — Create, Build, Scale.`}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords || defaultKeywords} />
       
