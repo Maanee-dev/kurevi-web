@@ -56,8 +56,8 @@ export default function Hero() {
           <Link to="/services" className="pill-button-primary group">
             <span className="relative z-10">Start a Project</span>
           </Link>
-          <Link to="/work" className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-all group flex items-center gap-2">
-            View Our Work <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          <Link to="/pricing" className="text-xs font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-all group flex items-center gap-2">
+            View Pricing <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>
