@@ -1,6 +1,14 @@
 import { useRef } from 'react';
 import { cn } from '../../lib/utils';
-import { ArrowRight } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Share2, 
+  MousePointerClick, 
+  Fingerprint, 
+  PenTool, 
+  Layout, 
+  TrendingUp 
+} from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -13,37 +21,43 @@ const services = [
     id: "01",
     slug: "/services/social-media-marketing",
     title: "SOCIAL MEDIA",
-    description: "Build a following that actually buys. We create platform-specific strategies that turn scrollers into customers across the Maldives.",
+    icon: Share2,
+    description: "Grow your audience and sales. We create tailored social media plans that connect with your local customers in the Maldives.",
   },
   {
     id: "02",
     slug: "/services/paid-advertising",
     title: "PAID ADS",
-    description: "Every Rufiyaa working harder. Maximize return with precision-targeted campaigns reaching local customers and international tourists.",
+    icon: MousePointerClick,
+    description: "Get better results from your ads. We target the right people so your ad spend brings in real customers efficiently.",
   },
   {
     id: "03",
     slug: "/services/branding",
     title: "BRANDING",
-    description: "Stand out in a sea of sameness. Forge striking, unforgettable brand identities that resonate deeply with local and global communities.",
+    icon: Fingerprint,
+    description: "Create a strong, memorable brand that your customers will recognize, trust, and love.",
   },
   {
     id: "04",
     slug: "/services/content-creation",
     title: "CONTENT",
-    description: "Content that sells, not just looks good. We produce high-fidelity media that actively drives reservations, purchases, and inquiries.",
+    icon: PenTool,
+    description: "High-quality videos, photos, and copy that clearly tell your story and encourage people to take action.",
   },
   {
     id: "05",
     slug: "/services/web-design",
     title: "WEB DESIGN",
-    description: "Websites that work as hard as you do. Architect lightning-fast, highly-converting digital storefronts tailored to your customers.",
+    icon: Layout,
+    description: "Beautiful, easy-to-use, and fast websites that are designed to turn your visitors into paying customers.",
   },
   {
     id: "06",
     slug: "/services/seo",
     title: "SEO",
-    description: "Be found when customers search. Dominate search rankings and capture high-intent organic traffic for long-term growth.",
+    icon: TrendingUp,
+    description: "Rank higher on Google so people can find your business easily when they search for your services.",
   },
 ];
 
@@ -100,58 +114,64 @@ export default function ServicesGrid() {
               href="/services" 
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold hover:text-[var(--primary)] transition-colors group"
             >
-              View Full Capabilities Index 
+              Explore All Services 
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
         </div>
 
-        <div className="brutalist-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className={cn(
-                "gsap-service-card brutalist-cell p-10 min-h-[300px] flex flex-col group overflow-hidden relative cursor-pointer",
-                "transition-colors duration-700"
-              )}
-              onClick={() => window.location.href = service.slug}
-            >
-              {/* Thermal Aura Background */}
-              <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden pointer-events-none">
-                <div 
-                  className="absolute top-1/2 left-1/2 w-[160%] h-[160%] -translate-x-1/2 -translate-y-1/2 scale-90 group-hover:scale-100 opacity-90 transition-transform duration-1000 ease-out blur-3xl pointer-events-none"
-                  style={{
-                    background: theme === 'dark' 
-                      ? "radial-gradient(ellipse 60% 80% at center, #000000 15%, #ff3b00 45%, #ff1ea0 65%, #100bdf 85%, transparent 100%)"
-                      : "radial-gradient(ellipse 60% 80% at center, #ffffff 15%, #ffbdaa 45%, #ff8ae0 65%, #8abeff 85%, transparent 100%)"
-                  }}
-                ></div>
-                <div 
-                  className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-                  }}
-                ></div>
-              </div>
+        <div className="brutalist-grid flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-0 snap-x snap-mandatory sm:snap-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:pb-0" style={{ paddingBottom: '3px' }}>
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={i}
+                className={cn(
+                  "gsap-service-card brutalist-cell p-10 min-h-[300px] flex-none w-[85vw] sm:w-auto snap-center sm:snap-align-none flex flex-col group overflow-hidden relative cursor-pointer border-r border-b sm:border-r-[var(--border)]",
+                  "transition-colors duration-700"
+                )}
+                onClick={() => window.location.href = service.slug}
+              >
+                {/* Thermal Aura Background */}
+                <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden pointer-events-none">
+                  <div 
+                    className="absolute top-1/2 left-1/2 w-[160%] h-[160%] -translate-x-1/2 -translate-y-1/2 scale-90 group-hover:scale-100 opacity-90 transition-transform duration-1000 ease-out blur-3xl pointer-events-none"
+                    style={{
+                      background: theme === 'dark' 
+                        ? "radial-gradient(ellipse 60% 80% at center, #000000 15%, #ff3b00 45%, #ff1ea0 65%, #100bdf 85%, transparent 100%)"
+                        : "radial-gradient(ellipse 60% 80% at center, #ffffff 15%, #ffbdaa 45%, #ff8ae0 65%, #8abeff 85%, transparent 100%)"
+                    }}
+                  ></div>
+                  <div 
+                    className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                    }}
+                  ></div>
+                </div>
 
-              <div className="relative z-10 flex flex-col h-full pointer-events-none">
-                <h3 className="text-2xl font-bold uppercase mb-4 tracking-tight group-hover:tracking-widest transition-all duration-300 mt-2">
-                  {service.title}
-                </h3>
-                
-                <p className="text-sm text-[var(--muted)] leading-relaxed">
-                  {service.description}
-                </p>
-                
-                <div className="mt-auto pt-8 flex items-center justify-between">
-                   <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--foreground)] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      Learn More
-                   </span>
-                   <ArrowRight className="w-5 h-5 text-[var(--foreground)] opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out" />
+                <div className="relative z-10 flex flex-col h-full pointer-events-none">
+                  <div className="mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    <Icon strokeWidth={1.5} className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold uppercase mb-4 tracking-tight group-hover:tracking-widest transition-all duration-300 mt-2">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-sm text-[var(--muted)] leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  <div className="mt-auto pt-8 flex items-center justify-between">
+                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--foreground)] opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                        Learn More
+                     </span>
+                     <ArrowRight className="w-5 h-5 text-[var(--foreground)] group-hover:translate-x-1 opacity-70 group-hover:opacity-100 transition-all duration-300 ease-out" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

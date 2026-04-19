@@ -41,6 +41,7 @@ export default function Footer() {
               <li><Link to="/work" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Work</Link></li>
               <li><Link to="/services" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Services</Link></li>
               <li><Link to="/about" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">About</Link></li>
+              <li><Link to="/blog" className="text-sm font-medium hover:text-[var(--muted)] transition-colors">Insights</Link></li>
             </ul>
           </div>
           

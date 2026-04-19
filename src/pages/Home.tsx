@@ -4,6 +4,7 @@ import Marquee from '@/src/components/home/Marquee';
 import AboutPreview from '@/src/components/home/AboutPreview';
 import ServicesGrid from '@/src/components/home/ServicesGrid';
 import FounderQuote from '@/src/components/home/FounderQuote';
+import BlogPreview from '@/src/components/home/BlogPreview';
 import Booking from '@/src/components/Booking';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
@@ -21,6 +22,7 @@ export default function Home() {
       <AboutPreview />
       <ServicesGrid />
       <FounderQuote />
+      <BlogPreview />
       <Booking />
       
       {/* Final CTA / Contact Link */}
