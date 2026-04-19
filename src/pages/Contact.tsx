@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Send, Phone, Info } from 'lucide-react';
+import { Send, Phone, Info, Loader2 } from 'lucide-react';
 import { useSearchParams, Link } from 'react-router-dom';
 import SEO from '@/src/components/SEO';
+import { supabase } from '@/src/lib/supabase';
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -16,16 +17,43 @@ export default function Contact() {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   useEffect(() => {
     if (pkgFromUrl) {
       setFormState((prev) => ({ ...prev, package: pkgFromUrl }));
     }
   }, [pkgFromUrl]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you! Your request has been received.');
-    setFormState({ name: '', email: '', phone: '', package: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const { error } = await supabase
+        .from('contact_requests')
+        .insert([
+          { 
+            email: formState.email, 
+            phone: formState.phone, 
+            package: formState.package, 
+            message: formState.message 
+          }
+        ]);
+
+      if (error) throw error;
+      
+      setSubmitStatus('success');
+      setFormState({ name: '', email: '', phone: '', package: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (err: any) {
+      console.error("Error submitting contact request", err.message);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -78,6 +106,7 @@ export default function Contact() {
                   className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors appearance-none cursor-pointer"
                   value={formState.package}
                   onChange={(e) => setFormState({...formState, package: e.target.value})}
+                  disabled={isSubmitting}
                 >
                   <option value="" className="text-black">- I'm not sure yet / Custom -</option>
                   <optgroup label="Web Development" className="text-black font-bold">
@@ -98,7 +127,8 @@ export default function Contact() {
                 <input 
                   type="email" 
                   required
-                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors disabled:opacity-50"
                   placeholder="john@company.com"
                   value={formState.email}
                   onChange={(e) => setFormState({...formState, email: e.target.value})}
@@ -110,7 +140,8 @@ export default function Contact() {
                 <input 
                   type="tel" 
                   required
-                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors disabled:opacity-50"
                   placeholder="+960 7XXXXXX"
                   value={formState.phone}
                   onChange={(e) => setFormState({...formState, phone: e.target.value})}
@@ -121,17 +152,29 @@ export default function Contact() {
                 <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Note (Optional)</label>
                 <textarea 
                   rows={4}
-                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors resize-none"
+                  disabled={isSubmitting}
+                  className="w-full bg-transparent border-b border-[var(--border)] py-3 focus:outline-none focus:border-[var(--foreground)] transition-colors resize-none disabled:opacity-50"
                   placeholder="Tell us a bit about your business or goals..."
                   value={formState.message}
                   onChange={(e) => setFormState({...formState, message: e.target.value})}
                 />
               </div>
 
-              <button type="submit" className="pill-button-primary w-full py-4 group">
-                <span>Send Request</span>
+              {submitStatus === 'success' && (
+                <div className="text-xs font-mono tracking-widest text-green-500 uppercase">
+                  Thank you! Your request has been received.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="text-xs font-mono tracking-widest text-red-500 uppercase">
+                  An error occurred. Please try again.
+                </div>
+              )}
+
+              <button type="submit" disabled={isSubmitting} className="pill-button-primary w-full py-4 group disabled:opacity-50 disabled:cursor-not-allowed">
+                <span>{isSubmitting ? 'Sending...' : 'Send Request'}</span>
                 <div className="w-6 h-6 rounded-full bg-[var(--background)] text-[var(--foreground)] flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                  <Send size={12} />
+                  {isSubmitting ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
                 </div>
               </button>
             </form>

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
-import { Calendar, Clock, Video, ArrowLeft, ArrowRight, Building2, User } from 'lucide-react';
+import { Calendar, Clock, Video, ArrowLeft, ArrowRight, Building2, User, Loader2, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
+import { supabase } from '../lib/supabase';
 
 export default function Booking() {
   const [step, setStep] = useState(1);
@@ -8,6 +9,14 @@ export default function Booking() {
   const [selectedDateObj, setSelectedDateObj] = useState<{ day: number, offset: number } | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isPersonal, setIsPersonal] = useState(false);
+
+  // Form states
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contextInput, setContextInput] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Calendar Logic
   const today = new Date();
@@ -28,14 +37,49 @@ export default function Booking() {
     setStep(3);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Meeting Requested Successfully!');
-    setStep(1);
-    setSelectedDateObj(null);
-    setSelectedTime(null);
-    setMonthOffset(0);
-    setIsPersonal(false);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const { error } = await supabase
+        .from('meeting_requests')
+        .insert([
+          {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            request_type: isPersonal ? 'Personal' : 'Company',
+            context: contextInput,
+            meeting_date: `${currentMonth} ${selectedDateObj?.day}, ${currentYear}`,
+            meeting_time: selectedTime,
+          }
+        ]);
+
+      if (error) throw error;
+
+      setSubmitStatus('success');
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setStep(1);
+        setSelectedDateObj(null);
+        setSelectedTime(null);
+        setMonthOffset(0);
+        setIsPersonal(false);
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setContextInput('');
+        setSubmitStatus('idle');
+      }, 3000);
+
+    } catch (err: any) {
+      console.error("Booking error:", err.message);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedDate = selectedDateObj?.day;
@@ -165,78 +209,100 @@ export default function Booking() {
 
             {step === 3 && (
               <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                <div className="flex justify-between items-center mb-6 border-b border-[var(--border)] pb-4">
-                  <h3 className="text-xl font-bold uppercase tracking-tight">Your Details</h3>
-                  <div className="text-[10px] sm:text-xs font-mono tracking-widest text-[var(--muted)]">
-                    {selectedDate} {currentMonth} @ {selectedTime}
+                {submitStatus === 'success' ? (
+                  <div className="flex flex-col items-center justify-center py-12 space-y-4 text-center">
+                    <CheckCircle2 size={48} className="text-green-500" />
+                    <h3 className="text-2xl font-black uppercase tracking-tighter">Meeting Requested!</h3>
+                    <p className="text-[var(--muted)] text-sm font-mono max-w-xs leading-relaxed">
+                      We've received your request and will send a calendar invite to {email} shortly.
+                    </p>
                   </div>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">First Name</label>
-                      <input required type="text" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono" />
+                ) : (
+                  <>
+                    <div className="flex justify-between items-center mb-6 border-b border-[var(--border)] pb-4">
+                      <h3 className="text-xl font-bold uppercase tracking-tight">Your Details</h3>
+                      <div className="text-[10px] sm:text-xs font-mono tracking-widest text-[var(--muted)]">
+                        {selectedDate} {currentMonth} @ {selectedTime}
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Last Name</label>
-                      <input required type="text" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono" />
-                    </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Email Address</label>
-                    <input required type="email" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono" />
-                  </div>
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">First Name</label>
+                          <input required type="text" value={firstName} onChange={e => setFirstName(e.target.value)} disabled={isSubmitting} className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Last Name</label>
+                          <input required type="text" value={lastName} onChange={e => setLastName(e.target.value)} disabled={isSubmitting} className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
+                        </div>
+                      </div>
 
-                  {/* Toggle Type of Request */}
-                  <div className="pt-4 border-t border-[var(--border)]">
-                    <div className="flex bg-[var(--border)]/20 p-1 rounded-none border border-[var(--border)]">
-                      <button
-                        type="button"
-                        onClick={() => setIsPersonal(false)}
-                        className={`flex-1 flex items-center justify-center py-2 text-xs font-mono uppercase tracking-widest transition-colors ${!isPersonal ? 'bg-[var(--foreground)] text-[var(--background)]' : 'text-[var(--muted)] hover:text-[var(--foreground)]'}`}
-                      >
-                        <Building2 size={12} className="mr-2" /> Company
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setIsPersonal(true)}
-                        className={`flex-1 flex items-center justify-center py-2 text-xs font-mono uppercase tracking-widest transition-colors ${isPersonal ? 'bg-[var(--foreground)] text-[var(--background)]' : 'text-[var(--muted)] hover:text-[var(--foreground)]'}`}
-                      >
-                        <User size={12} className="mr-2" /> Personal
-                      </button>
-                    </div>
-                  </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Email Address</label>
+                        <input required type="email" value={email} onChange={e => setEmail(e.target.value)} disabled={isSubmitting} className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
+                      </div>
 
-                  {!isPersonal ? (
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Company Name</label>
-                      <input required={!isPersonal} type="text" placeholder="Acme Corp" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono" />
-                    </div>
-                  ) : (
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Personal Context</label>
-                      <input required={isPersonal} type="text" placeholder="E.g., Independent Creator, Student" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono" />
-                    </div>
-                  )}
+                      {/* Toggle Type of Request */}
+                      <div className="pt-4 border-t border-[var(--border)]">
+                        <div className="flex bg-[var(--border)]/20 p-1 rounded-none border border-[var(--border)]">
+                          <button
+                            type="button"
+                            onClick={() => setIsPersonal(false)}
+                            disabled={isSubmitting}
+                            className={`flex-1 flex items-center justify-center py-2 text-xs font-mono uppercase tracking-widest transition-colors ${!isPersonal ? 'bg-[var(--foreground)] text-[var(--background)]' : 'text-[var(--muted)] hover:text-[var(--foreground)]'}`}
+                          >
+                            <Building2 size={12} className="mr-2" /> Company
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setIsPersonal(true)}
+                            disabled={isSubmitting}
+                            className={`flex-1 flex items-center justify-center py-2 text-xs font-mono uppercase tracking-widest transition-colors ${isPersonal ? 'bg-[var(--foreground)] text-[var(--background)]' : 'text-[var(--muted)] hover:text-[var(--foreground)]'}`}
+                          >
+                            <User size={12} className="mr-2" /> Personal
+                          </button>
+                        </div>
+                      </div>
 
-                  <div className="pt-4 flex items-center gap-4 border-t border-[var(--border)]">
-                    <button 
-                      type="button"
-                      onClick={() => setStep(2)}
-                      className="text-xs font-mono uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors group flex items-center"
-                    >
-                      <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                    </button>
-                    <button 
-                      type="submit"
-                      className="flex-1 bg-[var(--foreground)] text-[var(--background)] font-bold uppercase tracking-widest text-xs py-4 hover:opacity-90 transition-opacity"
-                    >
-                      Confirm Booking
-                    </button>
-                  </div>
-                </form>
+                      {!isPersonal ? (
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Company Name</label>
+                          <input required={!isPersonal} type="text" value={contextInput} onChange={e => setContextInput(e.target.value)} disabled={isSubmitting} placeholder="Acme Corp" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Personal Context</label>
+                          <input required={isPersonal} type="text" value={contextInput} onChange={e => setContextInput(e.target.value)} disabled={isSubmitting} placeholder="E.g., Independent Creator, Student" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
+                        </div>
+                      )}
+
+                      {submitStatus === 'error' && (
+                        <div className="text-xs font-mono tracking-widest text-red-500 uppercase flex justify-between">
+                          <span>An error occurred. Please try again.</span>
+                        </div>
+                      )}
+
+                      <div className="pt-4 flex items-center gap-4 border-t border-[var(--border)]">
+                        <button 
+                          type="button"
+                          onClick={() => setStep(2)}
+                          disabled={isSubmitting}
+                          className="text-xs font-mono uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors group flex items-center disabled:opacity-50"
+                        >
+                          <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+                        </button>
+                        <button 
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="flex-1 bg-[var(--foreground)] text-[var(--background)] font-bold uppercase tracking-widest text-xs py-4 hover:opacity-90 transition-opacity flex items-center justify-center disabled:opacity-50"
+                        >
+                          {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : 'Confirm Booking'}
+                        </button>
+                      </div>
+                    </form>
+                  </>
+                )}
               </motion.div>
             )}
           </div>
