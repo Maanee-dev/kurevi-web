@@ -60,19 +60,6 @@ export default function Booking() {
       if (error) throw error;
 
       setSubmitStatus('success');
-      // Reset after 3 seconds
-      setTimeout(() => {
-        setStep(1);
-        setSelectedDateObj(null);
-        setSelectedTime(null);
-        setMonthOffset(0);
-        setIsPersonal(false);
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setContextInput('');
-        setSubmitStatus('idle');
-      }, 3000);
 
     } catch (err: any) {
       console.error("Booking error:", err.message);
@@ -80,6 +67,19 @@ export default function Booking() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleReset = () => {
+    setStep(1);
+    setSelectedDateObj(null);
+    setSelectedTime(null);
+    setMonthOffset(0);
+    setIsPersonal(false);
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setContextInput('');
+    setSubmitStatus('idle');
   };
 
   const selectedDate = selectedDateObj?.day;
@@ -210,13 +210,36 @@ export default function Booking() {
             {step === 3 && (
               <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
                 {submitStatus === 'success' ? (
-                  <div className="flex flex-col items-center justify-center py-12 space-y-4 text-center">
-                    <CheckCircle2 size={48} className="text-green-500" />
-                    <h3 className="text-2xl font-black uppercase tracking-tighter">Meeting Requested!</h3>
-                    <p className="text-[var(--muted)] text-sm font-mono max-w-xs leading-relaxed">
-                      We've received your request and will send a calendar invite to {email} shortly.
-                    </p>
-                  </div>
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center text-center space-y-8 py-12"
+                  >
+                    <div className="w-20 h-20 rounded-full border border-[var(--foreground)]/20 flex items-center justify-center relative">
+                      <motion.div 
+                        initial={{ scale: 0 }} 
+                        animate={{ scale: 1 }} 
+                        transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
+                        className="w-16 h-16 rounded-full bg-[var(--foreground)] text-[var(--background)] flex items-center justify-center"
+                      >
+                        <CheckCircle2 size={32} />
+                      </motion.div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">Meeting Requested.</h3>
+                      <p className="text-[var(--muted)] text-sm max-w-[300px] mx-auto leading-relaxed">
+                        We've received your request and will send a calendar invite to <span className="text-[var(--foreground)] font-medium">{email}</span> shortly.
+                      </p>
+                    </div>
+                    
+                    <button 
+                      onClick={handleReset}
+                      className="mt-8 text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--foreground)] transition-colors border-b border-transparent hover:border-[var(--foreground)] pb-1"
+                    >
+                      Book another meeting
+                    </button>
+                  </motion.div>
                 ) : (
                   <>
                     <div className="flex justify-between items-center mb-6 border-b border-[var(--border)] pb-4">
@@ -268,7 +291,7 @@ export default function Booking() {
                       {!isPersonal ? (
                         <div className="space-y-2">
                           <label className="text-[10px] font-mono uppercase tracking-widest text-[var(--muted)]">Company Name</label>
-                          <input required={!isPersonal} type="text" value={contextInput} onChange={e => setContextInput(e.target.value)} disabled={isSubmitting} placeholder="Acme Corp" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
+                          <input required={!isPersonal} type="text" value={contextInput} onChange={e => setContextInput(e.target.value)} disabled={isSubmitting} placeholder="Redwave" className="w-full bg-transparent border border-[var(--border)] focus:border-[var(--foreground)] px-4 py-3 text-sm transition-colors outline-none font-mono disabled:opacity-50" />
                         </div>
                       ) : (
                         <div className="space-y-2">
