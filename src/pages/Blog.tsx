@@ -5,11 +5,13 @@ import { ArrowRight, Calendar, Search, ChevronLeft, ChevronRight } from 'lucide-
 import { blogPosts } from '../data/blogPosts';
 import SEO from '../components/SEO';
 import { cn } from '../lib/utils';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
+  const { theme } = useTheme();
 
   // Filter posts based on search query (searching titles and content)
   const filteredPosts = blogPosts.filter(post => 
@@ -84,7 +86,15 @@ export default function Blog() {
                 {/* Image layout above the text */}
                 {post.image && (
                   <div className="w-full aspect-[16/9] border-b border-[var(--border)] overflow-hidden shrink-0 group-hover:border-[var(--background)]/20 transition-colors">
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" referrerPolicy="no-referrer" />
+                    <img 
+                      src={post.image} 
+                      alt={post.title} 
+                      className={cn(
+                        "w-full h-full object-cover group-hover:scale-105 transition-transform duration-700",
+                        theme === 'dark' ? "grayscale group-hover:grayscale-0" : ""
+                      )} 
+                      referrerPolicy="no-referrer" 
+                    />
                   </div>
                 )}
                 

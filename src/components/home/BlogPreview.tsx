@@ -2,10 +2,13 @@ import { motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/src/data/blogPosts';
+import { useTheme } from '../../contexts/ThemeContext';
+import { cn } from '../../lib/utils';
 
 export default function BlogPreview() {
   // Taking just the latest 2 posts for the homepage preview
   const recentPosts = blogPosts.slice(0, 2);
+  const { theme } = useTheme();
 
   return (
     <section className="py-32 bg-[var(--background)] border-t border-[var(--border)] relative z-10">
@@ -44,7 +47,15 @@ export default function BlogPreview() {
                 {/* Image layout above the text */}
                 {post.image && (
                   <div className="w-full aspect-[16/9] border-b border-[var(--border)] overflow-hidden shrink-0 group-hover:border-[var(--background)]/20 transition-colors">
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" referrerPolicy="no-referrer" />
+                    <img 
+                      src={post.image} 
+                      alt={post.title} 
+                      className={cn(
+                        "w-full h-full object-cover group-hover:scale-105 transition-transform duration-700",
+                        theme === 'dark' ? "grayscale group-hover:grayscale-0" : ""
+                      )} 
+                      referrerPolicy="no-referrer" 
+                    />
                   </div>
                 )}
                 
