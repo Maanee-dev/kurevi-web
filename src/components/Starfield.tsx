@@ -8,7 +8,7 @@ export default function Starfield() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/about') return;
+    if (location.pathname === '/about' || location.pathname === '/work') return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -100,8 +100,8 @@ export default function Starfield() {
     };
   }, [theme, location.pathname]); 
 
-  // Do not render Starfield/background on the About page
-  if (location.pathname === '/about') {
+  // Do not render Starfield/background on the About and Work pages
+  if (location.pathname === '/about' || location.pathname === '/work') {
     return null;
   }
 
